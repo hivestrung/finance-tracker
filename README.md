@@ -25,24 +25,25 @@ script.js handles the creation of visualizations and web interactions of the app
 
 ## Implementation
 The financial visualizer tool was implemented as previously mentioned in the project summary with parser and chart.js
-#### Extracting Data
+### Extracting Data
 The following python module was used to extract the raw contents from e statments. which was then processed further using python string methods and formatted to a csv file.
 
 - parser https://docs.python.org/3/library/parser.html
 
-#### Visualizing Data
+### Visualizing Data
 The following library was used to implement visualize the data.
 
 - chart.js
 
 ## Getting Started
-#### Prerequisites
+### Prerequisites
 The following list outlines the requirements for this application. 
 
 - [Files](#files)
     - [E Statments](#e-statments)
     - [CSV](#csv)
 - [Tools](#tools)
+- [Execution](#execution)
 #### Files
 In order to use this application you will need copies of your e statments or your own csv. If you are a RBC client continue to the "Files" section, if you plan to use your own csv file then continue to the "CSV" section.
 
@@ -78,11 +79,13 @@ example.csv
 
 After collecting your e statments 
 
-#### Tools
+### Tools
 To execute the python files an installation of python is required. If you do not have a installation of python follow the download link, installation instructions are also provided by the link.
 - https://www.python.org/downloads/
 
 After installing python, rename.py and read_pdf.py should be executable, to execute the scripts follow the instructions below:
+
+### Execution
 
 To rename e statements run the following command in command prompt:
 This is important in order to extract the transaction date from the pdf files.
