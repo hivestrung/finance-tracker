@@ -1,51 +1,45 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <title>Financial Visualizer</title>
-  <!-- https://www.chartjs.org/docs/latest/ -->
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- including ECharts file -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.0/dist/echarts.min.js"></script>
 </head>
 <body>
-  <div>
-    <canvas id="myChart"></canvas>
-  </div>
-  <script>
-    const transaction = {
-      year: 2016,
-      month: "Jan",
-      day: "25",
-      transactionType: 'purchase',
-      company: 'other',
-      category: 'other',
-      amount: 10
-    }
-    const labels = [
-      'Jan',
-      'Feb'
-    ];
-
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'Finance Tracker',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [10.00,10.10,10.47,19.35,33.32,33.32,8.88,2.10,12.75,19.45,3.50,73.99,2.10,30.00,20.00,0.96,5.24,260.00,126.65,9.90,50.00,210.00,80.87,80.87,2.10,16.44,19.00,19.00,82.37,56.53,102.95,138.90,25.87,44.73,203.00,203.00,3.50,102.95,74.10,74.10,3.50,128.90,3.50,1.06,1.24],
-      }]
-    };
-    const config = {
-      type: 'line',
-      data,
-      options: {
-
-      }
-    };
-    var myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-  </script>
+    <!-- prepare a DOM container with width and height -->
+    <div id="main" style="width: 800px;height:800px;"></div>
+    <script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('main'));
+        // specify chart configuration item and data
+        var option = {
+            title: {
+                text: 'Financial Visualizer'
+            },
+            tooltip: {},
+            legend: {
+                data:['2018','2019']
+            },
+            xAxis: {
+                data: [' jan ',' feb ',' mar ',' apr ',' may ',' jun ',' jul ',' aug ',' sep ',' oct ',' nov ',' dec ']
+            },
+            yAxis: {},
+            series: [
+                {
+                    name: '2018',
+                    type: 'line',
+                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20]
+               },
+               {
+                    name: '2019',
+                    type: 'line',
+                    data: [2, 3, 15, 30, 5, 7, 2, 3, 15, 30, 5, 7]
+               }
+            ]
+        };
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+    </script>
 </body>
 </html>

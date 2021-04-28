@@ -1,4 +1,9 @@
-/statements/**
+451029xxxxxx6910
+01259xxx5313
+01259xxx1666
+.gitignore
 *.pdf
 *.txt
 *.csv
+__pycache__
+.vscode
