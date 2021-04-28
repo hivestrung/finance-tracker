@@ -1,12 +1,15 @@
-# Financial Visualizer
-A financial visualization tool used to gain insights about spending habits, trends, and patterns over varying transcation periods. This project was inspired due to limitations and inaccuracies in RBC's Finance Tracker and my interest in personal finance during quarantine. I collected my own personal e statements from my RBC account and used **parser** a python module, which was used extract the contents from the e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statments into a csv file I was able to create data visualizations using echarts.js. The file parse should be executable if you are also a RBC client to compile a csv file of all your previous credit and debit transactions. To use this application and see your own transaction history follow the instructions outlined in the "Getting Started" section. The following application can be downloaded and run locally.
+# Finance Tracker / Visualizer
+A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transcation periods. This project was inspired due to deficiencies in RBC's Finance Tracker and my developed interest in personal finance during quarantine. I collected my own personal e statements from my RBC account and used **parser** a Python text parsing module. Which was used extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statments into a csv file, I was able to create meaningful visualizations using echarts.js. A comprehensive data visualization library. The following application should be usable if you are also a RBC client. To use this application and see a comprehensive csv of your own transaction history follow the instructions outlined in the "Getting Started" section. The following application can be downloaded and run locally.
 
 - [File Manifest](#file-manifest)
 - [Implementation](#implementation)
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Files](#files)
-    - [CSV](#files)
+        - [E Statements](#e-statements)
+        - [CSV](#files)
+    - [Execution](#execution)
+    - [Visualization](#visualization)
 
 ## File Manifest
 The following list and descriptions are file specifications and details about each file and their functionality in the project.
@@ -52,18 +55,15 @@ The following list outlines the requirements for this application.
     - [CSV](#csv)
 - [Tools](#tools)
 - [Execution](#execution)
-#### Files
+### Files
 In order to use this application you will need copies of your e statments or your own csv. If you are a RBC client continue to the "Files" section, if you plan to use your own csv file then continue to the "CSV" section.
 
-##### E Statments
+#### E Statments
 Your e statements are stored digitally in your RBC account, which can be accessed by following these instructions:
-- df
-- df
-- df
 
 After downloading all of your e statments continue to the "Tools" section.
 
-##### CSV
+#### CSV
 The data visualization tool is also able to take a csv file as input, to use your own csv file follow the format according to the table below. The attributes required in the csv are as follows account, transaction date, type of transaction, category, and amount. The in the table below are as listed below. After creating your csv file continue to the "Tools" section.
 
 - Account Number
@@ -110,10 +110,23 @@ This is important in order to extract the transaction date from the pdf files.
     python ./rename.py path\to\your\e\statements
     
 After executing this command your e statments should be renamed from the following .pdf to .pdf.
-Following this step run the command in command prompt:
+To compile all credit e statements into a single csv file.
+Run the following command in command prompt:
 
-    python ./read_pdf.py path\to\your\e\statements
+    python ./read_credit_pdf.py path\to\your\e\statements
+
+After executing this command your e statments should be renamed from the following .pdf to .pdf.
+To compile all debit e statements into a single csv file.
+Run the following command in command prompt:
+
+    python ./read_debit_pdf.py path\to\your\e\statements
 
 After executing this command there should now be a text file containing all your transaction history,
 compiled from all of your e statments.
+To combine your credit and debit e statements.
+Run the following command in command prompt:
 
+    python ./combine-csv.py
+    
+### Visualization
+After completing the steps from the Execution section you should now have a properly formatted csv file.
