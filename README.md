@@ -1,6 +1,5 @@
 # Financial Visualizer
-## Summary
-A financial visualization tool used to see insights, trends, and patterns over varying transcation periods. This project was inspired due to limitations and inaccuracies in RBC's Finance Tracker. I collected my own personal e statements from RBC's and used **parser** a python module, which was used extract the contents from the e statements. Further string parsing techniques were used to extract transaction details into a csv file format. After compiling the e statments into a csv file I was able to create data visualizations using chart.js. The following application should also be executable if you are also an RBC client or create your own csv file. To use this application and see your own transaction history follow the instructions outlined in the "Getting Started" section. The following application can be downloaded and run locally.
+A financial visualization tool used to gain insights about spending habits, trends, and patterns over varying transcation periods. This project was inspired due to limitations and inaccuracies in RBC's Finance Tracker and my interest in personal finance during quarantine. I collected my own personal e statements from my RBC account and used **parser** a python module, which was used extract the contents from the e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statments into a csv file I was able to create data visualizations using echarts.js. The file parse should be executable if you are also a RBC client to compile a csv file of all your previous credit and debit transactions. To use this application and see your own transaction history follow the instructions outlined in the "Getting Started" section. The following application can be downloaded and run locally.
 
 - [File Manifest](#file-manifest)
 - [Implementation](#implementation)
@@ -9,19 +8,23 @@ A financial visualization tool used to see insights, trends, and patterns over v
     - [Files](#files)
     - [CSV](#files)
 
-
 ## File Manifest
-rename.py is a simple python script used to rename e statment files that were downloaded from RBC.
+The following list and descriptions are file specifications and details about each file and their functionality in the project.
 
-read_pdf.py is another python script that was used to parse transaction details extracted from the estatements.
-
-index.html contains the web based portion of the application.
-
-script.js handles the creation of visualizations and web interactions of the application.
 - rename.py
 - read_pdf.py
 - index.html
 - script.js
+
+rename.py is a simple python script used to rename e statment files that were downloaded from RBC, in order to use string parsing techniques to extract the year and 
+start and end month of a transaction.
+
+read_pdf.py is a python script that was used to parse transaction details extracted from the estatements. Used to extract the trasnaction date, posting date, transaction id, business details, and the amount of the transaction
+
+index.html contains the web based portion of the application.
+
+script.js handles the creation of visualizations and web interactions of the application.
+
 
 ## Implementation
 The financial visualizer tool was implemented as previously mentioned in the project summary with parser and chart.js
@@ -58,24 +61,33 @@ After downloading all of your e statments continue to the "Tools" section.
 ##### CSV
 The data visualization tool is also able to take a csv file as input, to use your own csv file follow the format according to the table below. The attributes required in the csv are as follows account, transaction date, type of transaction, category, and amount. The in the table below are as listed below. After creating your csv file continue to the "Tools" section.
 
+- Account Number
+    - the account number 
+- Transaction ID
+    - the id of the transaction used to cross reference transaction in e statement
 - Transaction Date
+    - the date of the transaction
     - must be in universal time coordinate (utc) format ex: YYYY-MM-DD
-- Type of Transaction
-    - transactions are either payments or purchases 
-- Category
+- Posting Date
+    - the date the transaction was executed
+    - must be in universal time coordinate (utc) format ex: YYYY-MM-DD
+- Category: an arbitrary list of categories used in RBC's finance tracker
     - utilities
     - entertainment
     - health
     - groceries
-    - 
+    - transportation
+    - electronics
+- Amount
+    - the amount of the transaction, a negative transaction amount denotes a purchase on a credit transaction, on a debit transaction a negavtive amount denotes a withdraw
 
 example.csv
 
-|Account| Transaction Date | Type of Transaction | Category | Amount |
-|-------| ---------------- |:-------------------:|:--------:| ------:|
-|0123456| 2016-01-22       | "purchase"          | $00.00   | $00.00 |
-|1111111| 2016-01-22       | "payment"           | $12.00   | $12.00 |
-|9876543| 2016-01-22       | "payment"           |  $1.00   |  $1.00 |
+|Account|Transaction ID|Transaction Date | Posting Date     | Business            | Category | Amount |
+|-------|--------------|---------------- | ---------------- |:-------------------:|:--------:| ------:|
+|0123456|0123456123456 |2016-01-22       | 2016-01-23       | AMAZON              | ECOMMERCE| $00.00 |
+|1111111|1111111       |2016-01-22       | 2016-01-25       | SUPERSTORE          | GROCERIES| $12.00 |
+|9876543|9876543       |2016-01-22       | 2016-01-25       | MCDONALDS           | FOOD     |  $1.00 |
 
 After collecting your e statments 
 
