@@ -83,11 +83,11 @@ The data visualization tool is also able to take a csv file as input, to use you
 
 example.csv
 
-|Account|Transaction ID|Transaction Date | Posting Date     | Business            | Category | Amount |
-|-------|--------------|---------------- | ---------------- |:-------------------:|:--------:| ------:|
-|0123456|0123456123456 |2016-01-22       | 2016-01-23       | AMAZON              | ECOMMERCE| $00.00 |
-|1111111|1111111       |2016-01-22       | 2016-01-25       | SUPERSTORE          | GROCERIES| $12.00 |
-|9876543|9876543       |2016-01-22       | 2016-01-25       | MCDONALDS           | FOOD     |  $1.00 |
+|Account|Transaction ID|Transaction Date | Description         | Category           | Amount |
+|-------|--------------|---------------- |:-------------------:|:------------------:| ------:|
+|0123456|0123456123456 |2016-01-22       | amazon              | general merchandise| $00.00 |
+|1111111|1111111       |2016-01-22       | superstore          | groceries          | $12.00 |
+|9876543|9876543       |2016-01-22       | mcdonalds           | restaurant         |  $1.00 |
 
 After collecting your e statments 
 
