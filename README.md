@@ -11,20 +11,25 @@ A financial visualization tool used to gain insights about spending habits, tren
 ## File Manifest
 The following list and descriptions are file specifications and details about each file and their functionality in the project.
 
-- rename.py
-- read_pdf.py
 - index.html
+- progressbar.py
+- rename.py
+- read_credit_pdf.py
+- read_debit_pdf.py
 - script.js
+
+index.html contains the web based portion of the application.
+
+progressbar.py is a commanline interface progress bar used to visualize the progress of the applications execution. 
 
 rename.py is a simple python script used to rename e statment files that were downloaded from RBC, in order to use string parsing techniques to extract the year and 
 start and end month of a transaction.
 
-read_pdf.py is a python script that was used to parse transaction details extracted from the estatements. Used to extract the trasnaction date, posting date, transaction id, business details, and the amount of the transaction
+read_credit_pdf.py is a python script that is used to parse rbc credit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
 
-index.html contains the web based portion of the application.
+read_debit_pdf.py is a python script that is used to parse rbc debit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
 
 script.js handles the creation of visualizations and web interactions of the application.
-
 
 ## Implementation
 The financial visualizer tool was implemented as previously mentioned in the project summary with parser and chart.js
