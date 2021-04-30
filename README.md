@@ -105,7 +105,7 @@ After collecting your e statements, follow the steps in the [Execution](#executi
 Download the make_csv.exe and category.json file and run it in the folder containing all of your e statements. The application recursively searches the current directory where it is saved and looks for e statements. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the csv example above. As previously mentioned in the [File Manifest](#file-manifest) section and the [CSV](#csv) section.
 
 An example of the application completing execution:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Example Execution")
+![alt text](https://raw.githubusercontent.com/nielsontrung/financial_visualizer/main/execution.PNG "Example Execution")
     
 ### Visualization
 After compiling the csv file from the [Execution](#execution) section, you should now be able to open the index.html file. Here, you will be able to see a visualization showing you total spending from various transaction periods and a comprehensive visualization based on your total spending and spending habits.
