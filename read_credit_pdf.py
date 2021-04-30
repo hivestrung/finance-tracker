@@ -1,6 +1,7 @@
 import os, json
 from tika import parser
 from category import get_category
+from read_pdf import get_statement_details, get_month_num, get_month_name
 
 # extract text from estatment
 def get_credit_pdf_content(path):
@@ -8,32 +9,6 @@ def get_credit_pdf_content(path):
   raw = parser.from_file(fname)
   content = raw['content']
   return content
-
-# extract the year, start month, and end month from the file name
-def get_statement_details(fname):
-  details = fname.split('-')
-  account = details[0]
-  year = details[1]
-  start_month = details[2]
-  end_month = details[5]
-  return [account, year, start_month, end_month]
-
-def get_month_name(month):
-  months ={
-    "01": "jan",
-    "02": "feb",
-    "03": "mar",
-    "04": "apr",
-    "05": "may",
-    "06": "jun",
-    "07": "jul",
-    "08": "aug",
-    "09": "sep",
-    "10": "oct",
-    "11": "nov",
-    "12": "dec"
-  }
-  return months[month]
 
 # get all transactions from credit e statement
 def get_credit_data(path, f):

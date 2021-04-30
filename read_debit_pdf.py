@@ -3,7 +3,8 @@ import uuid
 from category import get_category
 from json import dumps
 from tika import parser
-from re import search, match, compile
+from re import search
+from read_pdf import get_statement_details, get_month_num, get_month_name, has_month, iswithdrawl
 
 # extract content from debit e statement
 def get_debit_pdf_content(path):
@@ -20,75 +21,6 @@ def get_debit_pdf_content(path):
       content += line + '\n'
   return content
 
-# extract the year, start, end month, and start and end month date from the file name
-def get_statement_details(fname):
-  details = fname.replace('.pdf','').split('-')
-  account = details[0]
-  year = details[1]
-  start_month = details[2]
-  start_date = year + '-' + start_month + '-' + details[3]
-  end_month = details[5]
-  end_date = year + '-' + end_month + '-' + details[6]
-  return [account, year, start_month, end_month, start_date, end_date]
-
-def get_month_num(month):
-  months = {
-  "jan": "01",
-  "feb": "02", 
-  "mar": "03", 
-  "apr": "04", 
-  "may": "05", 
-  "jun": "06", 
-  "jul": "07", 
-  "aug": "08", 
-  "sep": "09", 
-  "oct": "10", 
-  "nov": "11", 
-  "dec": "12"
-  }
-  return months[month]
-
-
-def get_month_name(month):
-  months = {
-    "01": "jan",
-    "02": "feb",
-    "03": "mar",
-    "04": "apr",
-    "05": "may",
-    "06": "jun",
-    "07": "jul",
-    "08": "aug",
-    "09": "sep",
-    "10": "oct",
-    "11": "nov",
-    "12": "dec"
-  }
-  return months[month]
-
-def has_month(line):
-  months = [' jan ',' feb ',' mar ',' apr ',' may ',' jun ',' jul ',' aug ',' sep ',' oct ',' nov ',' dec ']
-  for month in months:
-    if month in line:
-      return True
-  return False
-
-def iswithdrawl(description):
-  withdrawl = ['transfer', 'payment', 'fee', 'withdrawl', 'purchase', 'returned']
-  for i in withdrawl:
-    if 'received' in description:
-      return False
-    elif i in description:
-      return True
-  return False
-
-# def isdeposit(description):
-#   deposit = ['deposit', 'received', 'ei canada']
-#   for i in deposit:
-#     if i in description:
-#       return True
-#   return False
-
 def get_debit_data(path,f):
   content = get_debit_pdf_content(path)
   if len(content) == 0:
@@ -96,7 +28,7 @@ def get_debit_data(path,f):
   else :
     fname = str(path.name)
     # used to store transactions as json objects
-    data = {}
+    data = []
     lines = content.splitlines()
     # get statement details from fname
     statement_details = get_statement_details(fname)
@@ -159,21 +91,22 @@ def get_debit_data(path,f):
       # is transaction amount withdrawl or deposit
       if iswithdrawl(description):
         amount = -amount
+      id = str(uuid.uuid4())      
       date = year + '-' + month + '-' + day
       description = description.strip()
       category = get_category(description)
-      transaction = account_number  + ',' + date  + ',' + description  + ',' + category + ',' + str(amount) + '\n'
+      transaction = account_number + ',' + id  + ',' + date  + ',' + description  + ',' + category + ',' + str(amount) + '\n'
       transactions.append(transaction)
       f.write(transaction)
       transaction_json = {}
+      transaction_json['id'] = id
       transaction_json['year'] = year
       transaction_json['month'] = month
       transaction_json['date'] = date
       transaction_json['description'] = description
       transaction_json['category'] = category
       transaction_json['amount'] = amount
-      id = str(uuid.uuid4())
-      data[id] = transaction_json
+      data.append(transaction_json)
       # keep track of balances
       if date in balances is None and (balance != opening_balance or balance != closing_balance):
         balances[date] = balance
