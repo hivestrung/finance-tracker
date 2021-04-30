@@ -1,5 +1,9 @@
 # Finance Tracker / Visualizer
-A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transcation periods. This project was inspired due to deficiencies in RBC's Finance Tracker and my developed interest in personal finance during quarantine. I collected my own personal e statements from my RBC account and used **parser** a Python text parsing module. Which was used extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create meaningful visualizations using echarts.js. A comprehensive data visualization library. The following application should be usable if you are also a RBC client. To use this application and see a comprehensive csv of your own transaction history follow the instructions outlined in the "Getting Started" section. To run the application follow the steps outlined in the Execution section.
+A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transcation periods. This project was inspired due to deficiencies in RBC's Finance Tracker and my developed interest in personal finance during quarantine. I collected my own personal e statements from my RBC account and used **parser** a Python text parsing module. Which was used extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create meaningful visualizations using echarts.js, data visualization library. The application should be usable if you are also a RBC client. To use this application follow the instructions outlined in the "Getting Started" section. 
+
+## Disclaimer
+
+Due to the structuring and format of RBC's debit e statements the amounts recorded in the compiled csv for debit transactions are not as accurate as initially intended. And creates inconsistencies in total balances. This application is instead intended to see insights in spending habits and trends in spending based on different periods and categories.
 
 - [File Manifest](#file-manifest)
 - [Implementation](#implementation)
@@ -98,7 +102,7 @@ The data visualization tool is also able to take a csv file as input, to use you
 
 example.csv
 
-|Account|Transaction ID|Transaction Date | Description         | Category           | Amount |
+|account|id            |date             | description         | category           | amount |
 |-------|--------------|---------------- |:-------------------:|:------------------:| ------:|
 |0123456|0123456123456 |2016-01-22       | amazon              | general merchandise| $00.00 |
 |1111111|1111111       |2016-01-22       | superstore          | groceries          | $12.00 |
