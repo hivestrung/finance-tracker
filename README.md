@@ -1,5 +1,5 @@
 # Finance Tracker / Visualizer
-A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transcation periods. This project was inspired due to deficiencies in RBC's Finance Tracker and my developed interest in personal finance during quarantine. I collected my own personal e statements from my RBC account and used **parser** a Python text parsing module. Which was used extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create meaningful visualizations using echarts.js. A comprehensive data visualization library. The following application should be usable if you are also a RBC client. To use this application and see a comprehensive csv of your own transaction history follow the instructions outlined in the "Getting Started" section. The following application can be downloaded and run locally.
+A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transcation periods. This project was inspired due to deficiencies in RBC's Finance Tracker and my developed interest in personal finance during quarantine. I collected my own personal e statements from my RBC account and used **parser** a Python text parsing module. Which was used extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create meaningful visualizations using echarts.js. A comprehensive data visualization library. The following application should be usable if you are also a RBC client. To use this application and see a comprehensive csv of your own transaction history follow the instructions outlined in the "Getting Started" section. To run the application follow the steps outlined in the Execution section.
 
 - [File Manifest](#file-manifest)
 - [Implementation](#implementation)
@@ -14,6 +14,7 @@ A financial tracker / visualization tool used to gain insights about spending ha
 ## File Manifest
 The following list and descriptions are file specifications and details about each file and their functionality in the project.
 
+- category.json
 - category.py
 - index.html
 - make_credit_csv.py
@@ -26,7 +27,9 @@ The following list and descriptions are file specifications and details about ea
 - rename_file.py
 - script.js
 
-category.py returns a category based on the transaction description and a dictionary of lists containing key words, collected from my own personal transaction history.
+category.json a json file containing a list of categories and key words related to them, based on my own transaction history. This file can be customized to compile a detailed csv file tailored to your own personal transaction history.
+
+category.py returns a category based on the transaction description and based on the data in the category.json file.
 
 index.html contains the web based portion of the application.
 
@@ -105,7 +108,7 @@ After collecting your e statements, follow the steps below to run the program.
 
 ### Execution
 
-Download the make_csv.exe file and run it in a folder containing all of your e statements. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the csv example above.
+Download the make_csv.exe file and run it in a folder containing all of your e statements. The application recursively searches the current directory where it is saved and looks for e statements. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the csv example above.
     
 ### Visualization
 After compiling the csv file from the previous section, you should now be able to open the index.html file. Here, you will be able to see a visualization showing you total spending from various transaction periods and a comprehensive visualization based on your total spending and spending habits.
