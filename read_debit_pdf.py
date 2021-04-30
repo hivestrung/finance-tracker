@@ -8,6 +8,16 @@ from read_pdf import get_statement_details, get_month_num, get_month_name, has_m
 
 # extract content from debit e statement
 def get_debit_pdf_content(path):
+  """
+  Takes a pathlib path that specifies the location of 
+  a debit e statement returns the contents of specified file.
+
+  @params
+    path  - Required : path of the debit e statement (pathlib Path)
+
+  @return
+    content - transactions of the debit e statement
+  """
   fname = str(path.parents[0]) + '/' + str(path.name)
   raw = parser.from_file(fname)
   lines = raw['content'].split('\n')
@@ -22,6 +32,19 @@ def get_debit_pdf_content(path):
   return content
 
 def get_debit_data(path,f):
+  """
+  Takes a pathlib path that specifies the location of 
+  a debit e statement returns the contents of specified file.
+
+  @params
+    path  - Required : path of the debit e statement (pathlib Path)
+    f     - Required : file being written to
+  @return
+    data          - list containing transactions of the debit e statement as json objects
+    transactions  - list of transactions as csv row
+    balances      - dictionary of balances {date:balance}
+    amounts       - dictionary of amounts {date:amount}
+  """
   content = get_debit_pdf_content(path)
   if len(content) == 0:
     return None
@@ -60,8 +83,6 @@ def get_debit_data(path,f):
       if 'opening balance' in line or 'closing balance' in line:
         continue
       toks = line.split(' ')
-      # print (line)
-      # print (description)
       # get the date
       if toks[0].isnumeric() and len(toks[0]) <=2 :
         day = toks[0]
@@ -88,32 +109,35 @@ def get_debit_data(path,f):
       else:
         amount = float(toks[len(toks)-2])
         balance = float(toks[len(toks)-1])        
-      # is transaction amount withdrawl or deposit
-      if iswithdrawl(description):
-        amount = -amount
+      # is transaction amount withdrawl or deposit      
+      # create transation csv row
       id = str(uuid.uuid4())      
       date = year + '-' + month + '-' + day
       description = description.strip()
       category = get_category(description)
       transaction = account_number + ',' + id  + ',' + date  + ',' + description  + ',' + category + ',' + str(amount) + '\n'
-      transactions.append(transaction)
-      f.write(transaction)
-      transaction_json = {}
-      transaction_json['id'] = id
-      transaction_json['year'] = year
-      transaction_json['month'] = month
-      transaction_json['date'] = date
-      transaction_json['description'] = description
-      transaction_json['category'] = category
-      transaction_json['amount'] = amount
-      data.append(transaction_json)
+      # online banking transfer are payments to visa account
+      # will not be included in the csv
+      if not 'online banking transfer' in description:
+        transactions.append(transaction)
+        f.write(transaction)
+        # create transaction json object
+        transaction_json = {}
+        transaction_json['id'] = id
+        transaction_json['year'] = year
+        transaction_json['month'] = month
+        transaction_json['date'] = date
+        transaction_json['description'] = description
+        transaction_json['category'] = category
+        transaction_json['amount'] = amount
+        data.append(transaction_json)
       # keep track of balances
       if date in balances is None and (balance != opening_balance or balance != closing_balance):
         balances[date] = balance
       else: 
         balances[date] = balance
       # keep track of amounts based on transaction date
-      if date in amounts: 
+      if date in amounts:
         amounts[date].append(amount)
       else:
         amounts[date] = [amount]
@@ -127,7 +151,3 @@ def get_debit_data(path,f):
     balances = dumps(balances, sort_keys = True)
     data = [data, transactions, balances, amounts]
     return data
-
-args = sys.argv
-if len(args) == 2:
-  print(get_debit_pdf_content(args[1]))

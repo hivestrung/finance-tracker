@@ -5,6 +5,16 @@ from read_pdf import get_statement_details, get_month_num, get_month_name
 
 # extract text from estatment
 def get_credit_pdf_content(path):
+  """
+  Takes a pathlib path that specifies the location of 
+  a debit e statement returns the contents of specified file.
+
+  @params
+    path  - Required : path of the debit e statement (pathlib Path)
+
+  @return
+    content - transactions of the debit e statement
+  """
   fname = str(path.parents[0]) + '/' + str(path.name)
   raw = parser.from_file(fname)
   content = raw['content']
@@ -12,6 +22,17 @@ def get_credit_pdf_content(path):
 
 # get all transactions from credit e statement
 def get_credit_data(path, f):
+  """
+  Takes a pathlib path that specifies the location of 
+  a debit e statement returns the contents of specified file.
+
+  @params
+    path  - Required : path of the debit e statement (pathlib Path)
+    f     - Required : file being written to
+  @return
+    transactions  - list of transactions as csv row
+    amounts       - list of amounts->float
+  """
   content = get_credit_pdf_content(path)
   if content is not None:
     fname = str(path.name)

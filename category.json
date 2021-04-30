@@ -5,7 +5,9 @@
     "canadian tire", 
     "cdn tire", 
     "compu-care", 
-    "mitsubishi"
+    "megatire",
+    "mitsubishi",
+    "sudsy's"
   ],
   "clothing": [
     "abercrombie", 
@@ -26,8 +28,9 @@
   "education": [
     "cbe", 
     "john wiley & sons", 
-    "quizlet", 
-    "sait", 
+    "quizlet",
+    "resume",
+    "sait",
     "u of c", 
     "unversity", 
     "vitalsource"
@@ -44,11 +47,19 @@
     "cineplex", 
     "entertainment", 
     "games", 
-    "jagex", 
+    "jagex",
+    "minecraft",
     "mojang", 
     "spotify", 
     "stampede", 
     "steam"
+  ],
+  "e transfers": [
+    "e-transfer received",
+    "e-transfer sent"
+  ],
+  "fine": [
+    "fine payment"
   ],
   "fee": [
     "fee"
@@ -56,7 +67,8 @@
   "gas": [
     "eleven", 
     "esso", 
-    "gas", 
+    "gas",
+    "highway",
     "husk", 
     "petro", 
     "shell"
@@ -68,6 +80,15 @@
     "miniso", 
     "staples", 
     "wal-mart"
+  ],
+  "government": [
+    "canada revenue",
+    "citizenship",
+    "ei canada",
+    "government",
+    "gst canada",
+    "payment canada",
+    "tax refund"
   ],
   "groceries": [
     "atlantic superstore", 
@@ -92,8 +113,10 @@
     "mike dean's super food stores", 
     "no frills", 
     "provigo", 
-    "quality foods", 
-    "rabba", 
+    "quality foods",
+    "quickly",
+    "rabba",
+    "real cdn",
     "real canadian superstore", 
     "safeway", 
     "save-on-foods", 
@@ -114,6 +137,7 @@
     "familiprix", 
     "jean coutu group", 
     "lawtons", 
+    "lens",
     "london drugs", 
     "pharmachoice", 
     "pharmacy", 
@@ -123,6 +147,7 @@
   "home improvement": [
     "lowe",
     "rona",
+    "south peak",
     "the home depot"
   ],
   "loans": [
@@ -138,8 +163,15 @@
   "other": [
     "other"
   ],
+  "personal care": [
+    "hair",
+    "protein",
+    "salon",
+    "spa"
+  ],
   "restaurants": [
-    "a&w", 
+    "a&w",
+    "barcelos",
     "bbq", 
     "beef", 
     "black bull", 
@@ -150,18 +182,23 @@
     "chianti", 
     "chicken", 
     "chinese", 
-    "coco tea", 
+    "coco tea",
+    "crunchy",
     "dairy", 
     "deli", 
     "denny's", 
     "donday", 
     "doordash", 
     "food", 
-    "grill", 
-    "kitchen", 
+    "grill",
+    "huong",
+    "irish",
     "korean", 
-    "marble", 
-    "mcdonald", 
+    "kitchen",
+    "mango",
+    "marble",
+    "mcdonald",
+    "nando's",
     "pho", 
     "pizza", 
     "ramen", 
@@ -185,6 +222,7 @@
     "transit" 
   ],
   "utilities": [
+    "aviva",
     "cable", 
     "enmax", 
     "insurance"

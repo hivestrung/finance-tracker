@@ -1,5 +1,17 @@
-# extract the year, start, end month, and start and end month date from the file name
 def get_statement_details(fname):
+  """
+  Takes an RBC e statement file name returns statement details about
+  the statement
+  @params
+    fname - Required : e statement file name
+  @return
+    account     - account number
+    year        - e statement year
+    start_month - e statement start month
+    end_month   - e statement end month
+    start_date  - e statement start date
+    end_date    - e statement end date
+  """
   details = fname.replace('.pdf','').split('-')
   account = details[0]
   year = details[1]
@@ -10,6 +22,13 @@ def get_statement_details(fname):
   return [account, year, start_month, end_month, start_date, end_date]
 
 def get_month_num(month):
+  """
+  Takes the name of a month returns is numerical representation
+  @params
+    month - Required : name of the month
+  @return
+    num   - number of the month as a string
+  """
   months = {
   "jan": "01",
   "feb": "02", 
@@ -24,10 +43,18 @@ def get_month_num(month):
   "nov": "11", 
   "dec": "12"
   }
-  return months[month]
+  num = months[month]
+  return num
 
 
 def get_month_name(month):
+  """
+  Takes the number of a month as a string returns the name of the month
+  @params
+    month - Required : number of the month
+  @return
+    name  - name of the month as a string
+  """
   months = {
     "01": "jan",
     "02": "feb",
@@ -42,9 +69,18 @@ def get_month_name(month):
     "11": "nov",
     "12": "dec"
   }
-  return months[month]
+  name = months[month]
+  return name
 
 def has_month(line):
+  """
+  Returns bool if line has a month
+  @params 
+    line - Required : line in being parsed
+  
+  @return
+    bool - True if line has a month in it False if line does not have a month in it
+  """
   months = [' jan ',' feb ',' mar ',' apr ',' may ',' jun ',' jul ',' aug ',' sep ',' oct ',' nov ',' dec ']
   for month in months:
     if month in line:
@@ -52,6 +88,14 @@ def has_month(line):
   return False
 
 def iswithdrawl(description):
+  """
+  Returns bool if the description is a withdrawl
+  @params 
+    description - Required : transaction description
+  
+  @return
+    bool - True if the description is a withdrawl False if the description is not a withdrawl
+  """
   withdrawl = ['transfer', 'payment', 'fee', 'withdrawl', 'purchase', 'returned']
   for i in withdrawl:
     if 'received' in description:
