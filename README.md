@@ -185,7 +185,7 @@ utilities
 - transactions related to utility expenses (ex: enmax,...)
  
 ## Customization
-To further customize transactions based on categories from vendors or businesses you frequent edit the category.json file by simply editing the desired keyword or category. Any new keyword or category should be added alphabetically for organization and maintenance.
+To further customize transactions based on categories from vendors or businesses you frequent edit the category.json file by simply editing the desired keyword or category. Any new keyword or category should be added based on the specificness of the keyword is in order to assign the correct category more specific keywords and categories should be added above less specific keywords or categories.
  
 ### Adding a new keyword to a category example:
 The code below is a sample of the category.json file, in this example we insert "new value" in the restaurants category between "mcdonalds" and "nandos". When we run the program after making these changes to category.json file, any transaction description containing the keyword "new restaurants" will be assigned "restaurants" as its category.
