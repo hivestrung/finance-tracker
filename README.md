@@ -5,6 +5,8 @@ A financial tracker / visualization tool used to gain insights about spending ha
 
 Due to the structuring and format of RBC's debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. And creates inconsistencies in total balances. This application is instead intended to see insights in spending habits and trends in spending based on different periods and categories.
 
+## Project Outline
+
 - [File Manifest](#file-manifest)
 - [Implementation](#implementation)
 - [Getting Started](#getting-started)
@@ -49,9 +51,6 @@ start and end month of a transaction.
 **script.js** handles the creation of visualizations and web interactions of the application.
 
 ## Implementation
-
-The financial visualizer tool was implemented as previously mentioned in the project summary with parser and echarts.js
-
 ### Extracting Data
 The raw contents of the e statements were extracted using **parser** from **[tika](https://github.com/chrismattmann/tika-python)** a Python module. Further string parsing techniques from Python's standard library and Python's regular expression module **[re](https://docs.python.org/3/library/re.html)** were used to extract the account number, id, date, description, category, and amount of each transaction that was extracted from the e statement. Python's standard.
 
@@ -59,9 +58,9 @@ The raw contents of the e statements were extracted using **parser** from **[tik
 - re: https://docs.python.org/3/library/re.html
 
 ### Visualizing Data
-The following library was used to visualize the data.
+The financial visualizer tool was implemented as previously mentioned in the project summary with parser and echarts.js
 
-- echarts.js
+- echarts.js: https://echarts.apache.org/en/index.html
 
 ## Getting Started
 ### Prerequisites
