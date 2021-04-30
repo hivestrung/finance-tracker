@@ -67,22 +67,23 @@ The financial visualizer tool was implemented as previously mentioned in the pro
 The following list outlines the requirements for this application. 
 
 - [Files](#files)
-    - [E Statements](#e-statements)
-    - [CSV](#csv)
-- [Tools](#tools)
+- [E Statements](#e-statements)
+- [CSV](#csv)
 - [Execution](#execution)
-### Files
-In order to use this application you will a folder containing copies of your e statements or your own csv file properly formatted according to the example in the [CSV](#csv) section. If you are a RBC client continue to the [Files](#files) section. For further information about how the csv file that will be compiled is structure continue to the [CSV](#csv) section below. If not skip to the [Execution](#execution) section. If you plan to use your own csv file then continue to the [CSV](#csv) section.
+- [Visualization](#visualization)
 
-#### E Statements
-Your e statements are stored digitally in your RBC account, which can be accessed by following the instructions outlined in the link below:
+### Files
+In order to use this application you will need a folder containing copies of your RBC e statements or your own csv file properly formatted according to the example in the [CSV](#csv) section. For further information about how the csv file that will be compiled is structure continue to the [CSV](#csv) section below. If you plan to use your own csv file then continue to the [CSV](#csv) section.
+
+### E Statements
+To download your RBC e statements follow the instructions outlined in the link below:
 
 https://help.sportsinteraction.com/hc/en-us/articles/360001774447-RBC-Bank-Statement-Instructions
 
-After downloading all of your e statements continue to the [Execution](#execution) section.
+To further understand how the csv file is structured and what data in includes continue to the [CSV](#csv) section.
 
-#### CSV
-The data visualization tool is also able to take a csv file as input, to use your own csv file follow the format according to the table below. The attributes required in the csv are as follows account, transaction date, type of transaction, category, and amount. The in the table below are as listed below. After creating your csv file continue to the [Execution](#execution) section.
+### CSV
+In order to visualize your financial data a csv file is required. My application is able to parse RBC e statements that can be download from your online account. Alternatively a csv file constructed with the same format as the example.csv file below should also work for the visualization portion of this project. The attributes in the csv are as follows account, transaction date, type of transaction, category, and amount.
 
 - account number: the account number 
 - id: the id of the transaction used to cross reference transaction in e statement
