@@ -7,17 +7,17 @@ Due to the structuring and format of RBC's debit e statements the amounts record
 
 ## Project Outline
 
-- [File Manifest](#file-manifest)
+- [Project Manifest](#project-manifest)
 - [Implementation](#implementation)
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Files](#files)
-        - [E Statements](#e-statements)
-        - [CSV](#files)
+    - [E Statements](#e-statements)
+    - [CSV](#files)
     - [Execution](#execution)
     - [Visualization](#visualization)
 
-## File Manifest
+## Project Manifest
 The following is a list of files used in the project and a description of each file.
 
 - category.json
@@ -33,22 +33,22 @@ The following is a list of files used in the project and a description of each f
 - rename_file.py
 - script.js
 
-**category.json** a json file containing a list of categories and key words related to them, based on my own transaction history. This file can be customized to compile a detailed csv file tailored to your own personal transaction history.
+**category.json**: a json file containing a list of categories and key words related to them, based on my own transaction history. This file can be customized to compile a detailed csv file tailored to your own personal transaction history.
 
-**category.py** returns a category based on the transaction description and based on the data in the category.json file.
+**category.py**: returns a category based on the transaction description and based on the data in the category.json file.
 
-**index.html** contains the web based portion of the application.
+**index.html**: contains the web based portion of the application.
 
-**progressbar.py** is a commanline interface progress bar used to visualize the progress of the applications execution. 
+**progressbar.py**: is a commanline interface progress bar used to visualize the progress of the applications execution. 
 
-**rename.py** is a simple python script used to rename e statements files that were downloaded from RBC, in order to use string parsing techniques to extract the year and 
+**rename.py**: is a simple python script used to rename e statements files that were downloaded from RBC, in order to use string parsing techniques to extract the year and 
 start and end month of a transaction.
 
-**read_credit_pdf.py** is a python script that is used to parse rbc credit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
+**read_credit_pdf.py**: is a python script that is used to parse rbc credit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
 
-**read_debit_pdf.py** is a python script that is used to parse rbc debit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
+**read_debit_pdf.py**: is a python script that is used to parse rbc debit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
 
-**script.js** handles the creation of visualizations and web interactions of the application.
+**script.js**: handles the creation of visualizations and web interactions of the application.
 
 ## Implementation
 ### Extracting Data
@@ -103,6 +103,9 @@ After collecting your e statements, follow the steps in the [Execution](#executi
 
 ### Execution
 Download the make_csv.exe and category.json file and run it in the folder containing all of your e statements. The application recursively searches the current directory where it is saved and looks for e statements. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the csv example above. As previously mentioned in the [File Manifest](#file-manifest) section and the [CSV](#csv) section.
+
+An example of the application completing execution:
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Example Execution")
     
 ### Visualization
 After compiling the csv file from the [Execution](#execution) section, you should now be able to open the index.html file. Here, you will be able to see a visualization showing you total spending from various transaction periods and a comprehensive visualization based on your total spending and spending habits.
