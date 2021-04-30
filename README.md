@@ -94,39 +94,11 @@ example.csv
 |1111111|1111111       |2016-01-22       | superstore          | groceries          | $12.00 |
 |9876543|9876543       |2016-01-22       | mcdonalds           | restaurant         |  $1.00 |
 
-After collecting your e statements 
-
-### Tools
-To execute the python files an installation of python is required. If you do not have a installation of python follow the download link, installation instructions are also provided by the link.
-- https://www.python.org/downloads/
-
-After installing python, rename.py and read_pdf.py should be executable, to execute the scripts follow the instructions below:
+After collecting your e statements, follow the steps below to run the program.
 
 ### Execution
 
-To rename e statements run the following command in command prompt:
-This is important in order to extract the transaction date from the pdf files.
-
-    python ./rename.py path\to\your\e\statements
-    
-After executing this command your e statements should be renamed from the following .pdf to .pdf.
-To compile all credit e statements into a single csv file.
-Run the following command in command prompt:
-
-    python ./read_credit_pdf.py path\to\your\e\statements
-
-After executing this command your e statements should be renamed from the following .pdf to .pdf.
-To compile all debit e statements into a single csv file.
-Run the following command in command prompt:
-
-    python ./read_debit_pdf.py path\to\your\e\statements
-
-After executing this command there should now be a text file containing all your transaction history,
-compiled from all of your e statements.
-To combine your credit and debit e statements.
-Run the following command in command prompt:
-
-    python ./combine-csv.py
+Download the make_csv.exe file and run it in a folder containing all of your e statements. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the csv example above.
     
 ### Visualization
 After completing the steps from the Execution section you should now have a properly formatted csv file.
