@@ -18,12 +18,14 @@ months_dict = {
 }
 
 # renames a single file
-def rename_file(fname):
+def rename_file(path):
+  parent = path.parents[0]
+  fname = str(path.name)
+  new_name = fname
   for month in months:
     if fname.find(month) != -1:
       new_name = fname.replace(month, months_dict[month])
-    os.rename(fname, new_name)
-  return new_name
+      os.rename(str(parent) +'\\'+ str(fname), str(parent) +'\\'+ new_name)
 
 # renames all files given a path
 def rename_files(path):

@@ -6,10 +6,10 @@ from tika import parser
 from re import search, match, compile
 
 # extract content from debit e statement
-def get_debit_pdf_content(fname):
+def get_debit_pdf_content(path):
+  fname = str(path.parents[0]) + '/' + str(path.name)
   raw = parser.from_file(fname)
   lines = raw['content'].split('\n')
-  # print (raw['content'])
   pattern = "\d+\.\d+$"
   content = ''
   for line in lines:
@@ -89,11 +89,12 @@ def iswithdrawl(description):
 #       return True
 #   return False
 
-def get_debit_data(fname,f):
-  content = get_debit_pdf_content(fname)
+def get_debit_data(path,f):
+  content = get_debit_pdf_content(path)
   if len(content) == 0:
     return None
   else :
+    fname = str(path.name)
     # used to store transactions as json objects
     data = {}
     lines = content.splitlines()

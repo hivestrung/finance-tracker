@@ -3,7 +3,8 @@ from tika import parser
 from category import get_category
 
 # extract text from estatment
-def get_credit_pdf_content(fname):
+def get_credit_pdf_content(path):
+  fname = str(path.parents[0]) + '/' + str(path.name)
   raw = parser.from_file(fname)
   content = raw['content']
   return content
@@ -35,9 +36,10 @@ def get_month_name(month):
   return months[month]
 
 # get all transactions from credit e statement
-def get_credit_data(fname, f):
-  content = get_credit_pdf_content(fname)
+def get_credit_data(path, f):
+  content = get_credit_pdf_content(path)
   if content is not None:
+    fname = str(path.name)
     lines = content.splitlines()
     statement_details = get_statement_details(fname)
     # prepare json data

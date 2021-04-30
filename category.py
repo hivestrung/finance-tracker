@@ -4,6 +4,7 @@ from re import search
 def get_category(description):
   automotive = ['acura', 'auto', 'canadian tire', 'cdn tire', 'compu-care', 'mitsubishi']
   clothing = ['abercrombie', 'h&m', 'old navy', 'shoe', 'simons', 'skechers', 'sport chek', 'uniqlo', 'urban planet', 'winners', 'zara']
+  deposit = ['deposit']
   education = ['cbe', 'john wiley & sons', 'quizlet', 'sait', 'u of c', 'unversity', 'vitalsource']
   electronics = ['best buy', 'logitech', 'memory', 'microsoft', 'newegg', 'source']
   entertainment = ['cineplex', 'entertainment', 'games', 'jagex', 'mojang', 'spotify', 'stampede', 'steam']
@@ -14,7 +15,7 @@ def get_category(description):
   healthcare = ['ahs', 'brunet', 'dental', 'drug', 'familiprix', 'jean coutu group', 'lawtons', 'london drugs', 'pharmachoice', 'pharmacy', 'rexall', 'shoppers drug mart']
   homeimprovement = ['lowe', 'rona', 'the home depot']
   loans = ['loan']
-  mobile =  ['bell', 'fido', 'koodo', 'mobile', 'rogers', 'telus']
+  mobile =  ['bell', 'fido', 'koodo', 'rogers', 'telus']
   other = ['other']
   restaurants = ['a&w', 'bbq', 'beef', 'black bull', 'brewsters', 'cafe', 'chatime', 'chef', 'chef', 'chianti', 'chicken', 'chinese', 'coco tea', 'dairy', 'deli', "denny's", 'donday', 'doordash', 'food', 'grill', 'kitchen', 'korean', 'marble', 'mcdonald', 'pho', 'pizza', 'ramen', 'restaurant', 'rotisserie', 'saigon', 'samosa', 'shawarma', 'ssome', 'sushi', 'tea', 'thai', 'vietnam', "wendy's", 'wok']
   travel = ['airport', 'bus', 'park', 'transit']
@@ -23,6 +24,7 @@ def get_category(description):
   categories = {
     'automotive': automotive,
     'clothing': clothing,
+    'deposit': deposit,
     'education': education,
     'electronics': electronics,
     'entertainment': entertainment,
