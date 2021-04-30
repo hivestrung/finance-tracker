@@ -4,7 +4,7 @@ from category import get_category
 from json import dumps
 from tika import parser
 from re import search
-from read_pdf import get_statement_details, get_month_num, get_month_name, has_month, iswithdrawl
+from read_pdf import get_statement_details, get_month_num, get_month_name, has_month, iswithdrawal, validtransaction
 
 # extract content from debit e statement
 def get_debit_pdf_content(path):
@@ -115,10 +115,22 @@ def get_debit_data(path,f):
       date = year + '-' + month + '-' + day
       description = description.strip()
       category = get_category(description)
+      ### determine if amount is positive or negative ###
+      # received transacitons are always positive
+      if 'received' in description:
+        amount = abs(amount)
+      elif 'purchase' in description:
+        amount = -abs(amount)
+      # transactions on certain categories will always be negative
+      elif iswithdrawal(category):
+        amount = -abs(amount)
+      if 'deposit' in category:
+        amount = abs(amount)
       transaction = account_number + ',' + id  + ',' + date  + ',' + description  + ',' + category + ',' + str(amount) + '\n'
-      # online banking transfer are payments to visa account
-      # will not be included in the csv
-      if not 'online banking transfer' in description:
+      # online banking transfer transactions are payments 
+      # to visa account will not be included in the csv
+      # monthly fees and monthly rebates will not be included
+      if validtransaction(description):
         transactions.append(transaction)
         f.write(transaction)
         # create transaction json object
@@ -131,17 +143,17 @@ def get_debit_data(path,f):
         transaction_json['category'] = category
         transaction_json['amount'] = amount
         data.append(transaction_json)
-      # keep track of balances
-      if date in balances is None and (balance != opening_balance or balance != closing_balance):
-        balances[date] = balance
-      else: 
-        balances[date] = balance
-      # keep track of amounts based on transaction date
-      if date in amounts:
-        amounts[date].append(amount)
-      else:
-        amounts[date] = [amount]
-      # reset variables
+        # keep track of balances
+        if date in balances is None and (balance != opening_balance or balance != closing_balance):
+          balances[date] = balance
+        else: 
+          balances[date] = balance
+        # keep track of amounts based on transaction date
+        if date in amounts:
+          amounts[date].append(amount)
+        else:
+          amounts[date] = [amount]
+      # reset variables after every transaction
       description = ''
       transaction = ''
       amount = 0
@@ -151,3 +163,4 @@ def get_debit_data(path,f):
     balances = dumps(balances, sort_keys = True)
     data = [data, transactions, balances, amounts]
     return data
+

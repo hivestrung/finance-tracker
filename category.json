@@ -11,6 +11,7 @@
   ],
   "clothing": [
     "abercrombie", 
+    "denim",
     "h&m", 
     "old navy", 
     "shoe", 
@@ -18,13 +19,12 @@
     "skechers", 
     "sport chek", 
     "uniqlo", 
-    "urban planet", 
+    "urban planet",
+    "value village",
+    "vanity",
     "winners", 
     "zara"
-  ],
-  "deposit": [
-    "deposit"
-  ],
+  ],  
   "education": [
     "cbe", 
     "john wiley & sons", 
@@ -44,6 +44,7 @@
     "source"
   ],
   "entertainment": [
+    "bacchus",
     "cineplex", 
     "entertainment", 
     "games", 
@@ -55,21 +56,22 @@
     "steam"
   ],
   "e transfers": [
-    "e-transfer received",
-    "e-transfer sent"
+    "e-transfer"
   ],
   "fine": [
     "fine payment"
   ],
   "fee": [
-    "fee"
+    "fee",
+    "item returned"
   ],
   "gas": [
     "eleven", 
     "esso", 
     "gas",
     "highway",
-    "husk", 
+    "husk",
+    "mobil@",
     "petro", 
     "shell"
   ],
@@ -133,7 +135,8 @@
     "ahs", 
     "brunet", 
     "dental", 
-    "drug", 
+    "drug",
+    "dr.",
     "familiprix", 
     "jean coutu group", 
     "lawtons", 
@@ -150,6 +153,11 @@
     "south peak",
     "the home depot"
   ],
+  "finance": [
+    "investment",
+    "questrade",
+    "special deposit"
+  ],
   "loans": [
     "loan"
   ],
@@ -164,7 +172,9 @@
     "other"
   ],
   "personal care": [
+    "cut",    
     "hair",
+    "nail",
     "protein",
     "salon",
     "spa"
@@ -174,7 +184,9 @@
     "barcelos",
     "bbq", 
     "beef", 
-    "black bull", 
+    "black bull",
+    "bobby",
+    "breakfast",
     "brewsters", 
     "cafe", 
     "chatime", 
@@ -188,23 +200,30 @@
     "deli", 
     "denny's", 
     "donday", 
-    "doordash", 
-    "food", 
+    "doordash",
+    "dynasty",
+    "five guys",
+    "food",
+    "grey eagle",
     "grill",
     "huong",
     "irish",
-    "korean", 
+    "kebab",
     "kitchen",
+    "korean",
     "mango",
+    "manrijangsung",
     "marble",
     "mcdonald",
+    "moxie's",
     "nando's",
     "pho", 
     "pizza", 
     "ramen", 
     "restaurant", 
-    "rotisserie", 
-    "saigon", 
+    "rotisserie",    
+    "saigon",
+    "saltlik",
     "samosa", 
     "shawarma", 
     "ssome", 
@@ -226,5 +245,13 @@
     "cable", 
     "enmax", 
     "insurance"
+  ],
+  "withdrawl": [
+    "cash",
+    "withdrawal",
+    "transfer to deposit"
+  ],
+  "deposit": [
+    "deposit"
   ]
 }

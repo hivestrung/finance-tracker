@@ -87,7 +87,7 @@ def has_month(line):
       return True
   return False
 
-def iswithdrawl(description):
+def iswithdrawal(category):
   """
   Returns bool if the description is a withdrawl
   @params 
@@ -96,10 +96,26 @@ def iswithdrawl(description):
   @return
     bool - True if the description is a withdrawl False if the description is not a withdrawl
   """
-  withdrawl = ['transfer', 'payment', 'fee', 'withdrawl', 'purchase', 'returned']
-  for i in withdrawl:
-    if 'received' in description:
+  # purchases are always negative
+  notwithdrawl = ["deposit","e transfer","government","other"]
+  if 'received' in category:
+    return False
+  for i in notwithdrawl:
+    if i == category:
       return False
-    elif i in description:
-      return True
-  return False
+  return True
+
+def validtransaction(description):
+  """
+  Returns bool if the description is a valid transaction
+  @params 
+    description - Required : transaction description
+  
+  @return
+    bool - False if "online banking transfer", "monthly fee", "multiproduct rebate" is in  description is other wise True
+  """
+  notvalid = ["online banking transfer", "monthly fee", "multiproduct rebate"]
+  for i in notvalid:
+    if i in description:
+      return False
+  return True
