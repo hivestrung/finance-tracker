@@ -15,6 +15,9 @@ Due to the structuring and format of RBCs debit e statements the amounts recorde
     - [Prerequisites](#prerequisites)
     - [Files](#files)
     - [E Statements](#e-statements)
+    - [category.json](#category.json)
+        - [Categories](#categories)
+        - [Customization](#customization)
     - [CSV](#files)
     - [Execution](#execution)
     - [Visualization](#visualization)
@@ -73,24 +76,29 @@ script.js
  
 # Implementation
 ## Extracting Data
-The raw contents of the e statements were extracted using **parser** from **[tika](https://github.com/chrismattmann/tika-python)** a Python module. Further string parsing techniques from Python's standard library and Python's regular expression module **[re](https://docs.python.org/3/library/re.html)** were used to extract the account number, id, date, description, category, and amount of each transaction that was extracted from the e statement. Python's standard.
- 
+The raw contents of the e statements were extracted using **parser** from **[tika](https://github.com/chrismattmann/tika-python)** a Python module. Further string parsing techniques from Python's standard library and Python's regular expression module **[re](https://docs.python.org/3/library/re.html)** were used to extract the account number, id, date, description, category, and amount of each transaction.
+
+### Python Libraries
 - tika: https://github.com/chrismattmann/tika-python
 - re: https://docs.python.org/3/library/re.html
  
 ## Visualizing Data
 The visualization portion of this project was implemented using echarts.js a free open source JavaScript data visualization library.
- 
+
+### JavaScript Libraries
 - echarts.js: https://echarts.apache.org/en/index.html
  
 # Getting Started
-To use the application follow the steps outlined in the [Prerequisites](#prerequisites) section.
+To use the application follow the steps outlined in the following sections.
  
 ## Prerequisites
 The following list outlines the requirements for this application.
  
 - [Files](#files)
 - [E Statements](#e-statements)
+- [category.json](#category.json)
+    - [Categories](#categories)
+    - [Customization](#customization)
 - [CSV](#csv)
 - [Execution](#execution)
 - [Visualization](#visualization)
@@ -108,8 +116,8 @@ To further understand how the csv file is structured and what data it includes c
 ## category.json
 This file contains information used to assign a category to a transaction based on keywords stored in the category.json file. The list below outlines the different categories in category.json. The categories stored in category.json are based on categories used in RBC's MyFinanceTracker application. The categories listed are arbitrary values and can be changed freely based on your own transaction history. Categories can be added or removed based on your own transaction history. Examples at the end of this section show you how to add new key words or categories.
  
-### Categories
-The following is a list of the categories in category.json and examples of keywords in each category. Steps outlined in the [Customization](#customization) section shows you how to add, edit, and remove keywords and categories.
+## Categories
+The following is a list of the categories in category.json and examples of keywords in each category. Steps outlined in the [Customization](#customization) section show you how to add, edit, and remove keywords and categories.
  
 automotive
 - transactions related to automotive purchases (ex: acura, honda,...)
@@ -171,11 +179,10 @@ travel
 utilities
 - transactions related to utility expenses (ex: enmax,...)
  
-### Customization
+## Customization
+To further customize transactions based on categories from vendors or businesses you frequent edit the category.json file by simply adding or removing the keyword or category. Any new keyword or category should be added alphabetically for organization and maintenance.
  
-To further customize transactions based on categories from vendors or businesses you frequent edit the category.json file by simply inserting a new string according to the category it falls under. Any new keyword or category should be added alphabetically for organization and maintenance.
- 
-Adding a new keyword to a category:
+### Adding a new keyword to a category example:
  
 The code below is a sample of the category.json file, in this example we insert "new value" in the restaurants category between "mcdonalds" and "nandos". When we run the program after making these changes to category.json file, any transaction description containing the keyword "new restaurants" will be assigned "restaurants" as its category.
  
@@ -191,7 +198,7 @@ The code below is a sample of the category.json file, in this example we insert 
         ...
     }
  
-Adding a new category:
+### Adding a new category example:
  
 The code below is a sample of the category.json file, in this example we add a new category before the "restaurants" category. In the "new category" category we also add the keyword "something". When we execute the program with the updated changes to category.json any transaction description that contains "something" in it will be assigned the "new category" as its category.
  
@@ -207,7 +214,7 @@ The code below is a sample of the category.json file, in this example we add a n
         ...
     }
     
-Deleting a keyword or category:
+### Deleting a keyword or category example:
  
 To remove a key word from a category or a whole category simply delete it from category.json. In this example we remove the "new restaurant" key word we added in the first example. We also remove the "new category" category we had added in the previous example.
  
@@ -235,10 +242,10 @@ date
 - The date of the transaction stored in universal time coordinate (utc) format (ex: YYYY-MM-DD).
  
 category
-- An arbitrary list of categories used in RBC's finance tracker (ex; automotive, clothing, electronics, entertainment,...). Categories can be customized by editing the category.json file as mentioned in the [File Manifest](#file-manifest) section. To create a more personalized csv file based on your own transaction history.
+- An arbitrary list of categories used in RBC's finance tracker (ex; automotive, clothing, electronics, entertainment,...). Categories can be customized by editing the category.json file as mentioned in the [category.json](#category.json) section. To create a more personalized csv file based on your own transaction history.
  
 amount
-- the amount of the transaction, a negative transaction amount denotes a purchase on a credit transaction, on a debit transaction a negative amount denotes a withdrawal. Disclaimer due to the file format and structure of RBCs debit e statements there are some inaccuracies in values recorded for some debit transactions.
+- The amount of the transaction, a negative transaction amount denotes a purchase on a credit transaction, on a debit transaction a negative amount denotes a withdrawal. Disclaimer due to the file format and structure of RBCs debit e statements there are some inaccuracies in values recorded for some debit transactions.
  
 example.csv
  
