@@ -247,7 +247,7 @@ category
 amount
 - The amount of the transaction, a negative transaction amount denotes a purchase on a credit transaction, on a debit transaction a negative amount denotes a withdrawal. Disclaimer due to the file format and structure of RBCs debit e statements there are some inaccuracies in values recorded for some debit transactions.
  
-example.csv
+### example.csv
  
 |account|id            |date             | description         | category           | amount |
 |-------|--------------|---------------- |:-------------------:|:------------------:| ------:|
@@ -258,9 +258,9 @@ example.csv
 After collecting your e statements, follow the steps in the [Execution](#execution) section below on how to run the program.
  
 ## Execution
-To run the program download the make_csv.exe and category.json file and run it in the folder containing your RBC e statements. The application recursively searches the current directory where it is saved and looks for RBC e statements. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the example.csv above. As previously mentioned in the [File Manifest](#file-manifest) section and the [CSV](#csv) section, category.json can be edited to match certain based on your own spending. To see how to edit category.json continue to the [category.json](#category.json) section below.
+To run the program download the make_csv.exe and category.json file and run it in the folder containing your RBC e statements. The application recursively searches the directory where it is saved and looks for RBC e statements. The program first converts the filenames of all the e-statements found from the previous step. The following is an example of the file beginning renamed (ex: 12345XXXXXX12345-2014-Mar12-2014-Apr12 to 12345XXXXXX12345-2014-03-12-2014-04-12). This step is required for better organization and to extract the transaction period of the e-statement. After this step, the program proceeds to extracting the contents of the e-statements . Transactions are then written to the "all-transactions.csv" file. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the example.csv above.
  
-An example of the application completing execution:
+Example of successful execution:
  
 ![alt text](https://raw.githubusercontent.com/nielsontrung/financial_visualizer/main/execution.PNG "Example Execution")
     
