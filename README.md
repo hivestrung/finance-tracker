@@ -14,12 +14,19 @@ A financial tracker / visualization tool used to gain insights about spending ha
 ## File Manifest
 The following list and descriptions are file specifications and details about each file and their functionality in the project.
 
+- category.py
 - index.html
+- make_credit_csv.py
+- make_csv.exe
+- make_csv.py
+- make_debit.csv
 - progressbar.py
-- rename.py
 - read_credit_pdf.py
 - read_debit_pdf.py
+- rename_file.py
 - script.js
+
+category.py returns a category based on the transaction description and a dictionary of lists containing key words, collected from my own personal transaction history.
 
 index.html contains the web based portion of the application.
 
@@ -101,4 +108,4 @@ After collecting your e statements, follow the steps below to run the program.
 Download the make_csv.exe file and run it in a folder containing all of your e statements. After the program finishes executing, there should be a csv file called "all-transactions". This file should contain a comprehensive list of all your transactions from your e statements formatted according to the csv example above.
     
 ### Visualization
-After completing the steps from the Execution section you should now have a properly formatted csv file.
+After compiling the csv file from the previous section, you should now be able to open the index.html file. Here, you will be able to see a visualization showing you total spending from various transaction periods and a comprehensive visualization based on your total spending and spending habits.
