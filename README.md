@@ -1,8 +1,8 @@
 # Finance Tracker / Visualizer
-A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transaction periods. This project was inspired due to deficiencies in RBC's MyFinanceTracker and my interest in personal finance developed during quarantine. Deficiencies in MyFinanceTracker include duplicatd transactions from my visa account. I collected my own personal e statements from my RBC account and used the parser function from tika a Python parsing module. Which was used to extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create a meaningful data visualizations tool. Using echarts.js a data visualization library. The application should be usable if you are also a RBC client. To use this application follow the instructions outlined in the [Getting Started](#getting-started) section.
+A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transaction periods. This project was inspired due to deficiencies in RBC's MyFinanceTracker and my interest in personal finance developed during quarantine. I collected my own personal e statements from my RBC account and used the parser function from tika a Python parsing module. Which was used to extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create meaningful data visualizations. Using echarts.js a data visualization library. The application should be usable if you are a RBC client. To use this application follow the instructions outlined in the [Getting Started](#getting-started) section.
  
 ## Disclaimer
-Due to the structure and format of RBCs debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. Certain deposits and withdrawls are not recorded the appropriate value and create inconsistencies in total debit account balances. This application should instead be used to gain insights about your personal spending habits and trends in spending based on different periods and categories.
+Due to the structure and format of RBCs debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. Certain deposits and withdrawls are not recorded with their appropriate value and create inconsistencies in total debit account balances. This application should instead be used to gain insights about your personal spending habits and trends in spending based on different periods and categories.
  
 ## Project Outline
  
@@ -20,6 +20,7 @@ Due to the structure and format of RBCs debit e statements the amounts recorded 
     - [CSV](#files)
     - [Execution](#execution)
     - [Visualization](#visualization)
+    - [Statistics](#statistics)
  
 ## Project Manifest
 The following is a list of files used in the project and a description of each file.
@@ -274,3 +275,5 @@ To run the program download the make_csv.exe and category.json file and run it i
     
 ## Visualization
 After compiling the csv file from the [Execution](#execution) section, you should now be able to open the index.html file. Here, you will be able to see a visualization showing you total spending from various transaction periods and a comprehensive visualization based on your total spending and spending habits.
+
+## Statistics
