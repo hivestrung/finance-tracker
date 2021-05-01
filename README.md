@@ -14,7 +14,7 @@ Due to the structure and format of RBCs debit e statements the amounts recorded 
     - [Prerequisites](#prerequisites)
     - [Files](#files)
     - [E Statements](#e-statements)
-    - [category.json](#category.json)
+    - [Category json](#category-json)
         - [Categories](#categories)
         - [Customization](#customization)
     - [CSV](#files)
@@ -118,7 +118,7 @@ https://help.sportsinteraction.com/hc/en-us/articles/360001774447-RBC-Bank-State
 
 After downloading all your e statements continue to the next section.
  
-## category.json
+## Category json
 This file contains information used to assign a category to a transaction based on keywords stored in it. The following section includes a list that outlines the different categories in category.json. The categories stored in category.json are based on categories from RBC's MyFinanceTracker application. The categories listed are arbitrary and can be changed based on your own transaction history. Categories can be added or removed based on your own transaction history, examples at the end of this section show you how to add new keywords or categories or delete them.
  
 ## Categories
