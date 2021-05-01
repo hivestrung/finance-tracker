@@ -31,14 +31,15 @@ def get_debit_pdf_content(path):
       content += line + '\n'
   return content
 
-def get_debit_data(path,f):
+def get_debit_data(path,f,dataset):
   """
   Takes a pathlib path that specifies the location of 
   a debit e statement returns the contents of specified file.
 
   @params
-    path  - Required : path of the debit e statement (pathlib Path)
-    f     - Required : file being written to
+    path          - Required : path of the debit e statement (pathlib Path)
+    f             - Required : file being written to
+    dataset       - Required : json file containing yearly total spending on a category
   @return
     data          - list containing transactions of the debit e statement as json objects
     transactions  - list of transactions as csv row
@@ -51,7 +52,6 @@ def get_debit_data(path,f):
   else :
     fname = str(path.name)
     # used to store transactions as json objects
-    data = []
     lines = content.splitlines()
     # get statement details from fname
     statement_details = get_statement_details(fname)
@@ -134,15 +134,6 @@ def get_debit_data(path,f):
         transactions.append(transaction)
         f.write(transaction)
         # create transaction json object
-        transaction_json = {}
-        transaction_json['id'] = id
-        transaction_json['year'] = year
-        transaction_json['month'] = month
-        transaction_json['date'] = date
-        transaction_json['description'] = description
-        transaction_json['category'] = category
-        transaction_json['amount'] = amount
-        data.append(transaction_json)
         # keep track of balances
         if date in balances is None and (balance != opening_balance or balance != closing_balance):
           balances[date] = balance
@@ -153,14 +144,13 @@ def get_debit_data(path,f):
           amounts[date].append(amount)
         else:
           amounts[date] = [amount]
+        dataset[category][int(year)] += amount
       # reset variables after every transaction
       description = ''
       transaction = ''
       amount = 0
       balance = 0
-    data = dumps(data, sort_keys = True)
     amounts = dumps(amounts, sort_keys = True)
     balances = dumps(balances, sort_keys = True)
-    data = [data, transactions, balances, amounts]
+    data = [transactions, balances, amounts]
     return data
-

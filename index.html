@@ -41,5 +41,64 @@
         // use configuration item and data specified to show chart
         myChart.setOption(option);
     </script>
+    <div id="main2" style="width: 800px;height:800px;"></div>
+    <script type="text/javascript">
+        // based on prepared DOM, initialize echarts instance
+        var myChart = echarts.init(document.getElementById('main2'));
+        // specify chart configuration item and data
+        var option = {
+            title: {
+                text: 'Financial Visualizer'
+            },
+            tooltip: {
+                trigger: 'axis',
+                showContent: false
+            },
+            legend: {                
+            },
+            dataset: {
+                source: [
+                    ["transaction","2014","2015","2016","2017","2018","2019","2020","2021"],
+                    ["automotive"],
+                    ["clothing"],
+                    ["education"],
+                    ["electronics"],
+                    ["entertainment"],
+                    ["e transfers"],
+                    ["fine"],
+                    ["fee"],
+                    ["gas"],
+                    ["general merchandise"],
+                    ["government"],
+                    ["groceries"],
+                    ["healthcare"],
+                    ["home improvement"],
+                    ["finance"],
+                    ["loans"],
+                    ["mobile"],
+                    ["other"],
+                    ["personal care"],
+                    ["restaurants"],
+                    ["travel"],
+                    ["utilities"],
+                    ["withdrawl"],
+                    ["deposit"]
+                ]
+            },
+            xAxis: {
+                data: ["automotive","clothing","deposit","education","electronics","entertainment","e transfers","fine","fee","gas","general merchandise","government","groceries","healthcare","home improvement","finance","loans","mobile","other","personal care","restaurants","travel","utilities","withdrawl"]
+            },
+            yAxis: {},
+            series: [
+                {
+                    name: '2018',
+                    type: 'pie',
+                    data: [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
+               }
+            ]
+        };
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+    </script>
 </body>
 </html>

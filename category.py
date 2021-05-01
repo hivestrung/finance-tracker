@@ -16,3 +16,5 @@ def get_category(description):
         return category
   category = 'other'  
   return category
+
+get_category('description')
