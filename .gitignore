@@ -9,3 +9,7 @@ __pycache__
 .vscode
 dist
 build
+data.json
+month.json
+bar-y-category-stack.html
+dataset-link.html

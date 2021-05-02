@@ -1,5 +1,4 @@
-import os, sys
-import uuid
+import os, sys, uuid
 from category import get_category
 from json import dumps
 from tika import parser
@@ -20,7 +19,7 @@ def get_debit_pdf_content(path):
   """
   fname = str(path.parents[0]) + '/' + str(path.name)
   raw = parser.from_file(fname)
-  lines = raw['content'].split('\n')
+  lines = raw['content'].splitlines()
   pattern = "\d+\.\d+$"
   content = ''
   for line in lines:
@@ -31,7 +30,7 @@ def get_debit_pdf_content(path):
       content += line + '\n'
   return content
 
-def get_debit_data(path,f,dataset):
+def get_debit_data(path,f,data):
   """
   Takes a pathlib path that specifies the location of 
   a debit e statement returns the contents of specified file.
@@ -60,7 +59,8 @@ def get_debit_data(path,f,dataset):
     transactions = []
     # get year start and end month from fname
     year = statement_details[1]
-    month = ''
+    month_num = ''
+    month_name = ''
     day = ''
     date = ''
     start_date = statement_details[4]
@@ -75,10 +75,10 @@ def get_debit_data(path,f,dataset):
     opening_balance = float(lines[0].split(' ')[2])
     closing_balance = float(lines[len(lines)-1].split(' ')[2])
     # store balances 
+    balance = 0
     balances = {}
     balances[start_date] = opening_balance
     balances[end_date] = closing_balance
-    balance = 0
     for line in lines:
       if 'opening balance' in line or 'closing balance' in line:
         continue
@@ -86,7 +86,8 @@ def get_debit_data(path,f,dataset):
       # get the date
       if toks[0].isnumeric() and len(toks[0]) <=2 :
         day = toks[0]
-        month = get_month_num(toks[1])
+        month_num = get_month_num(toks[1])
+        month_name = get_month_name(month_num)
         if len(day) < 2 :
           day = '0' + day
         # get the description
@@ -112,7 +113,7 @@ def get_debit_data(path,f,dataset):
       # is transaction amount withdrawl or deposit      
       # create transation csv row
       id = str(uuid.uuid4())      
-      date = year + '-' + month + '-' + day
+      date = year + '-' + month_num + '-' + day
       description = description.strip()
       category = get_category(description)
       ### determine if amount is positive or negative ###
@@ -144,13 +145,15 @@ def get_debit_data(path,f,dataset):
           amounts[date].append(amount)
         else:
           amounts[date] = [amount]
-        dataset[category][int(year)] += amount
+        data['category'][category][int(year)] += amount
+        data['month'][month_name][int(year)] += amount
       # reset variables after every transaction
       description = ''
-      transaction = ''
+      category = ''
       amount = 0
       balance = 0
+      transaction = ''
     amounts = dumps(amounts, sort_keys = True)
     balances = dumps(balances, sort_keys = True)
-    data = [transactions, balances, amounts]
-    return data
+    result = [transactions, balances, amounts]
+    return result
