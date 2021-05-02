@@ -35,9 +35,8 @@ def get_credit_pdf_content(path):
 # get all transactions from credit e statement
 def get_credit_data(path, f, data):
   """
-  Takes a pathlib path that specifies the location of 
-  a debit e statement returns the contents of specified file.
-  Writes purchase transactions from the e statement to f.
+  Takes a pathlib path that specifies the location of   
+  Writes transactions from the e statement to f.
 
   @params
     path          - Required : path of the debit e statement (pathlib Path)

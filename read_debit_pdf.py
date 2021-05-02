@@ -33,7 +33,7 @@ def get_debit_pdf_content(path):
 def get_debit_data(path,f,data):
   """
   Takes a pathlib path that specifies the location of 
-  a debit e statement returns the contents of specified file.
+  a debit e statement all transactions from the e statement to f.
 
   @params
     path          - Required : path of the debit e statement (pathlib Path)
@@ -109,7 +109,7 @@ def get_debit_data(path,f,data):
         amount = float(toks[len(toks)-1])
       else:
         amount = float(toks[len(toks)-2])
-        balance = float(toks[len(toks)-1])        
+        balance = float(toks[len(toks)-1])
       # is transaction amount withdrawl or deposit      
       # create transation csv row
       id = str(uuid.uuid4())      
@@ -125,6 +125,7 @@ def get_debit_data(path,f,data):
       # transactions on certain categories will always be negative
       elif iswithdrawal(category):
         amount = -abs(amount)
+      # all deposit transactions are positive
       if 'deposit' in category:
         amount = abs(amount)
       transaction = account_number + ',' + id  + ',' + date  + ',' + description  + ',' + category + ',' + str(amount) + '\n'
@@ -132,8 +133,9 @@ def get_debit_data(path,f,data):
       # to visa account will not be included in the csv
       # monthly fees and monthly rebates will not be included
       if validtransaction(description):
-        transactions.append(transaction)
         f.write(transaction)
+        data['category'][category][int(year)] += amount
+        data['month'][month_name][int(year)] += amount
         # create transaction json object
         # keep track of balances
         if date in balances is None and (balance != opening_balance or balance != closing_balance):
@@ -145,8 +147,6 @@ def get_debit_data(path,f,data):
           amounts[date].append(amount)
         else:
           amounts[date] = [amount]
-        data['category'][category][int(year)] += amount
-        data['month'][month_name][int(year)] += amount
       # reset variables after every transaction
       description = ''
       category = ''
