@@ -5,7 +5,7 @@ from read_credit_pdf import get_credit_data
 from read_debit_pdf import get_debit_data
 from pathlib import Path
 from progressbar import progressBar
-
+from stats import get_general_stats, get_stats
 
 def make_data(keys,start_year,end_year):
   res = {}
@@ -34,6 +34,9 @@ with open('category.json') as f:
 
 start_year = int(statements[0].name.split('-')[1])
 end_year = int(statements[len(statements)-1].name.split('-')[1])
+years = []
+for i in range(start_year,end_year):
+  years.append(i)
 
 data = {}
 data['category'] = make_data(category,start_year,end_year)
@@ -65,3 +68,14 @@ for i in data['month']:
 # save data to json file
 with open('data.json', 'w') as j:
   json.dump(data, j, ensure_ascii=False, indent=2)
+
+# write data to data.js for visualization
+f = open('data.js','w')
+f.write('var start_year = ' + str(start_year) + '\n')
+f.write('var end_year = ' + str(end_year) + '\n')
+f.write('var years = ' + str(years) + '\n')
+f.write('var months = ' + str(months) + '\n')
+f.write('var lifetime_stats = ' + str(get_general_stats()) + '\n')
+f.write('var category_stats = ' + str(get_stats('category')) + '\n')
+f.write('var month_stats = ' + str(get_stats('month')) + '\n')
+f.close()

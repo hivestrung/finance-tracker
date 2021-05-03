@@ -5,100 +5,18 @@
     <title>ECharts</title>
     <!-- including ECharts file -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.0/dist/echarts.min.js"></script>
+    <!-- include jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- include data.js -->
+    <script src="data.js"></script>
+    <!-- include script.js -->
+    <script src="script.js"></script>
 </head>
 <body>
     <!-- prepare a DOM container with width and height -->
-    <div id="main" style="width: 800px;height:800px;"></div>
-    <script type="text/javascript">
-        // based on prepared DOM, initialize echarts instance
-        var myChart = echarts.init(document.getElementById('main'));
-        // specify chart configuration item and data
-        var option = {
-            title: {
-                text: 'Financial Visualizer'
-            },
-            tooltip: {},
-            legend: {
-                data:['2018','2019']
-            },
-            xAxis: {
-                data: [' jan ',' feb ',' mar ',' apr ',' may ',' jun ',' jul ',' aug ',' sep ',' oct ',' nov ',' dec ']
-            },
-            yAxis: {},
-            series: [
-                {
-                    name: '2018',
-                    type: 'line',
-                    data: [5, 20, 36, 10, 10, 20, 5, 20, 36, 10, 10, 20]
-               },
-               {
-                    name: '2019',
-                    type: 'line',
-                    data: [2, 3, 15, 30, 5, 7, 2, 3, 15, 30, 5, 7]
-               }
-            ]
-        };
-        // use configuration item and data specified to show chart
-        myChart.setOption(option);
-    </script>
-    <div id="main2" style="width: 800px;height:800px;"></div>
-    <script type="text/javascript">
-        // based on prepared DOM, initialize echarts instance
-        var myChart = echarts.init(document.getElementById('main2'));
-        // specify chart configuration item and data
-        var option = {
-            title: {
-                text: 'Financial Visualizer'
-            },
-            tooltip: {
-                trigger: 'axis',
-                showContent: false
-            },
-            legend: {                
-            },
-            dataset: {
-                source: [
-                    ["transaction","2014","2015","2016","2017","2018","2019","2020","2021"],
-                    ["automotive"],
-                    ["clothing"],
-                    ["education"],
-                    ["electronics"],
-                    ["entertainment"],
-                    ["e transfers"],
-                    ["fine"],
-                    ["fee"],
-                    ["gas"],
-                    ["general merchandise"],
-                    ["government"],
-                    ["groceries"],
-                    ["healthcare"],
-                    ["home improvement"],
-                    ["finance"],
-                    ["loans"],
-                    ["mobile"],
-                    ["other"],
-                    ["personal care"],
-                    ["restaurants"],
-                    ["travel"],
-                    ["utilities"],
-                    ["withdrawl"],
-                    ["deposit"]
-                ]
-            },
-            xAxis: {
-                data: ["automotive","clothing","deposit","education","electronics","entertainment","e transfers","fine","fee","gas","general merchandise","government","groceries","healthcare","home improvement","finance","loans","mobile","other","personal care","restaurants","travel","utilities","withdrawl"]
-            },
-            yAxis: {},
-            series: [
-                {
-                    name: '2018',
-                    type: 'pie',
-                    data: [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120]
-               }
-            ]
-        };
-        // use configuration item and data specified to show chart
-        myChart.setOption(option);
-    </script>
+    <!-- pie chart -->
+    <div id="container1" style="width: 800px;height:800px;"></div>
+    <!-- bar chart -->
+    <div id="container2" style="width: 800px;height:800px;"></div>    
 </body>
 </html>

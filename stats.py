@@ -7,31 +7,46 @@ import json
 # average transaction amount per category
 # monthly spending
 # average monthly spending
-def get_category_stats():
+def get_general_stats():
   with open('data.json') as f:
     data = json.load(f)
-
-  stats = {}
   years = len(data['category']['deposit'])
-  print (years)
   category_data = data['category']
-  stats['category'] = {}
+  # get total and average spending per category
+  stats = []
+  earnings = 0
+  spendings = 0
   for i in category_data:
-    total = 0
     for j in category_data[i]:
-      total += category_data[i][j]
-    stats['category']['total'] = round(total,2)
-    stats['category']['average'] = round(total,2)
+      if category_data[i][j] > 0:
+        earnings += category_data[i][j]
+      elif category_data[i][j] < 0:
+        spendings += category_data[i][j]
+  stats.append(round(earnings,2))
+  stats.append(round(earnings/years,2))
+  stats.append(round(spendings,2))
+  stats.append(round(spendings/years,2))
+  return stats
 
-  month_data = data['month']
-
-  # print (data['month'])
-  # dictionary used to store stats about data
-  # stats = {}
-
-#   # get the total spending for each category
-
-# # def get_month_stats():
-
-print("total and average yearly spending per category")
-get_category_stats()
+def get_stats(key):
+  with open('data.json') as f:
+    data = json.load(f)
+  if key == 'category':
+    years = len(data[key]['deposit'])
+    data = data['category']
+  elif key == 'month':
+    years = len(data[key]['jan'])
+    data = data['month']
+  piedata = []
+  bardata = []  
+  for key in data:
+    total = 0
+    monthlydata = []
+    for amount in data[key]:
+      total += data[key][amount]
+      monthlydata.append(data[key][amount])
+    total = round(total,2)
+    average = round(total/years,2)
+    piedata.append([key,total,average])
+    bardata.append([key,monthlydata])
+  return [piedata,bardata]
