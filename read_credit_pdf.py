@@ -33,7 +33,7 @@ def get_credit_pdf_content(path):
   return content
 
 # get all transactions from credit e statement
-def get_credit_data(path, f, data):
+def get_credit_data(path,f,data):
   """
   Takes a pathlib path that specifies the location of   
   Writes transactions from the e statement to f.
@@ -52,7 +52,7 @@ def get_credit_data(path, f, data):
     month_pattern = '(((jan)|(feb)|(mar)|(apr)|(may)|(jun)|(jul)|(aug)|(sep)|(oct)|(nov)|(dec))\s{1}\d{1,2}\s{1}){2}'
     id_pattern = "^\d{3,}$"
     amount_pattern = "^-?(\d+.\d+)$"
-    transaction_pattern = "^(((jan)|(feb)|(mar)|(apr)|(may)|(jun)|(jul)|(aug)|(sep)|(oct)|(nov)|(dec))\s{1}\d{1,2}\s{1}){2}.+(\d+\.\d+){1}$"
+    # transaction_pattern = "^(((jan)|(feb)|(mar)|(apr)|(may)|(jun)|(jul)|(aug)|(sep)|(oct)|(nov)|(dec))\s{1}\d{1,2}\s{1}){2}.+(\d+\.\d+){1}$"
     # transaction detail variables
     account_number = statement_details[0]
     date_info = get_statement_details(fname)
@@ -84,7 +84,7 @@ def get_credit_data(path, f, data):
         amount = -float(line)
       if amount != 0:
         if amount < 0:
-          transaction = account_number + ',' + id + ',' + date + ',' + description + ',' + category + ',' + str(amount) + '\n'
+          transaction = id + ',' + account_number + ',' + date + ',' + description + ',' + category + ',' + str(amount) + '\n'
           f.write(transaction)
           data['category'][category][int(year)] += amount
           data['month'][month_name][int(year)] += amount

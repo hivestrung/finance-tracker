@@ -112,7 +112,7 @@ def get_debit_data(path,f,data):
         balance = float(toks[len(toks)-1])
       # is transaction amount withdrawl or deposit      
       # create transation csv row
-      id = str(uuid.uuid4())      
+      id = str(uuid.uuid4())
       date = year + '-' + month_num + '-' + day
       description = description.strip()
       category = get_category(description)
@@ -128,7 +128,7 @@ def get_debit_data(path,f,data):
       # all deposit transactions are positive
       if 'deposit' in category:
         amount = abs(amount)
-      transaction = account_number + ',' + id  + ',' + date  + ',' + description  + ',' + category + ',' + str(amount) + '\n'
+      transaction = id  + ',' + account_number + ',' + date  + ',' + description  + ',' + category + ',' + str(amount) + '\n'
       # online banking transfer transactions are payments 
       # to visa account will not be included in the csv
       # monthly fees and monthly rebates will not be included

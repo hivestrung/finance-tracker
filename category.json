@@ -75,7 +75,7 @@
     "petro", 
     "shell"
   ],
-  "general merchandise": [
+  "general": [
     "aliexpress", 
     "amazon", 
     "dollar store", 
@@ -147,13 +147,13 @@
     "rexall", 
     "shoppers drug mart"
   ],
-  "home improvement": [
+  "home": [
     "lowe",
     "rona",
     "south peak",
     "the home depot"
   ],
-  "finance": [
+  "investments": [
     "investment",
     "questrade",
     "special deposit"

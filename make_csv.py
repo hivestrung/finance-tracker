@@ -6,6 +6,7 @@ from read_debit_pdf import get_debit_data
 from pathlib import Path
 from progressbar import progressBar
 from stats import get_general_stats, get_stats
+from table import make_table
 
 def make_data(keys,start_year,end_year):
   res = {}
@@ -46,7 +47,7 @@ data['month'] = make_data(months,start_year,end_year)
 
 # open statements and write to csv file
 csv = 'all-transactions.csv'
-csv_header = 'account number, id, date, description, category, amount\n'
+csv_header = 'id, account , date, description, category, amount\n'
 f = open(csv,'w')
 f.write(csv_header)
 for statement in progressBar(statements, prefix = 'Progress:', suffix = 'Complete', length = 50):
@@ -76,6 +77,8 @@ f.write('var end_year = ' + str(end_year) + '\n')
 f.write('var years = ' + str(years) + '\n')
 f.write('var months = ' + str(months) + '\n')
 f.write('var lifetime_stats = ' + str(get_general_stats()) + '\n')
-f.write('var category_stats = ' + str(get_stats('category')) + '\n')
-f.write('var month_stats = ' + str(get_stats('month')) + '\n')
+f.write('var category_stats = ' + str(get_stats('category',start_year,end_year)) + '\n')
+f.write('var month_stats = ' + str(get_stats('month',start_year,end_year)) + '\n')
 f.close()
+# convert the csv to html table
+make_table()

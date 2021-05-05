@@ -28,25 +28,60 @@ def get_general_stats():
   stats.append(round(spendings/years,2))
   return stats
 
-def get_stats(key):
+def get_stats(key,start_year,end_year):
+  """
+  @params 
+  """
   with open('data.json') as f:
     data = json.load(f)
   if key == 'category':
     years = len(data[key]['deposit'])
-    data = data['category']
+    data = data[key]
   elif key == 'month':
     years = len(data[key]['jan'])
-    data = data['month']
-  piedata = []
-  bardata = []  
-  for key in data:
+    data = data[key]
+  total_stats = []
+  yearly_stats = []
+  # get lifetime total and average spending per category
+  # get yearly total spending per category
+  for i in data:
     total = 0
-    monthlydata = []
-    for amount in data[key]:
-      total += data[key][amount]
-      monthlydata.append(data[key][amount])
+    yearlydata = []
+    yearlydata.append(i)
+    for amount in data[i]:
+      total += data[i][amount]
+      yearlydata.append(abs(data[i][amount]))
     total = round(total,2)
     average = round(total/years,2)
-    piedata.append([key,total,average])
-    bardata.append([key,monthlydata])
-  return [piedata,bardata]
+    total_stats.append([i,total,average])
+    yearly_stats.append(yearlydata)
+  if key == 'category':
+    # yearly spending for every category
+    yearly_data = []
+    for year in range(start_year,end_year+1):
+      temp = []
+      for i in data:
+        if i == 'deposit' or i == 'other' or i == 'government':
+          continue
+        else:
+          temp.append(abs(data[i][str(year)]))
+      temp.reverse()
+      yearly_data.append([str(year),temp])
+    res = [total_stats,yearly_stats,yearly_data]
+    return res
+  else:
+    # yearly spending for month category
+    yearly_data = []
+    for year in range(start_year,end_year+1):
+      temp = []
+      for i in data:
+        if i == 'deposit' or i == 'other' or i == 'government':
+          continue
+        else:
+          temp.append(abs(data[i][str(year)]))
+      # temp.reverse
+      yearly_data.append([str(year),temp])
+    res = [total_stats,yearly_stats,yearly_data]
+    return res
+# print(get_stats('category',2014,2021)[2])
+# print(get_stats('month',2014,2021)[2])
