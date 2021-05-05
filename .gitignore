@@ -10,6 +10,8 @@ __pycache__
 dist
 build
 data.json
+data.js
+table.js
 month.json
 bar-y-category-stack.html
 dataset-link.html

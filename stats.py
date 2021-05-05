@@ -1,4 +1,3 @@
-import json
 # get some basic statistics from data.json
 # total expenses per category
 # total expenses per year
@@ -7,6 +6,8 @@ import json
 # average transaction amount per category
 # monthly spending
 # average monthly spending
+import json
+
 def get_general_stats():
   with open('data.json') as f:
     data = json.load(f)
@@ -79,9 +80,23 @@ def get_stats(key,start_year,end_year):
           continue
         else:
           temp.append(abs(data[i][str(year)]))
-      # temp.reverse
+      temp.reverse()
       yearly_data.append([str(year),temp])
     res = [total_stats,yearly_stats,yearly_data]
     return res
-# print(get_stats('category',2014,2021)[2])
-# print(get_stats('month',2014,2021)[2])
+
+# check if category total and month total are equal
+def check_consistency():
+  with open ('data.json') as f:
+    data = json.load(f)
+  category_data = data['category']
+  category_total = 0
+  month_data = data['month']
+  month_total = 0
+  for key in category_data:
+    for year in category_data[key]:
+      category_total += category_data[key][year]
+  for key in month_data:
+    for year in month_data[key]:
+      month_total += month_data[key][year]
+  print (category_total,month_total)

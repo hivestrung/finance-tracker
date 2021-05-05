@@ -7,7 +7,6 @@ def get_category(description):
   categories = []
   with open('category.json') as f:
     categories = json.load(f)
-
   category = ''
   for i in categories:
     for j in categories[i]:
@@ -16,5 +15,3 @@ def get_category(description):
         return category
   category = 'other'  
   return category
-
-get_category('description')
