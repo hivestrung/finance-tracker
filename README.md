@@ -2,11 +2,12 @@
 A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transaction periods. This project was inspired due to deficiencies in RBC's MyFinanceTracker and my interest in personal finance developed during quarantine. I collected my own personal e statements from my RBC account and used the parser function from tika a Python parsing module. Which was used to extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create meaningful data visualizations. Using echarts.js a data visualization library. The application should be usable if you are a RBC client. To use this application follow the instructions outlined in the [Getting Started](#getting-started) section.
  
 ## Disclaimer
-Due to the structure and format of RBCs debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. Certain deposits and withdrawls are not recorded with their appropriate value and create inconsistencies in total debit account balances. This application should instead be used to gain insights about your personal spending habits and trends in spending based on different periods and categories.
+Due to the structure and format of RBCs debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. Certain deposits and withdrawls are not recorded with their appropriate value and create inconsistencies in total debit account balances. This application should instead be used to gain insights about your personal spending habits and trendsbased on different categories and periods.
  
 ## Project Outline
  
 - [Project Manifest](#project-manifest)
+- [Example](#example)
 - [Implementation](#implementation)
     - [Extracting Data](#extracting-data)
     - [Visualizing Data](#visualizing-data)
@@ -25,6 +26,7 @@ Due to the structure and format of RBCs debit e statements the amounts recorded 
 ## Project Manifest
 The following is a list of files used in the project and a description of each file.
  
+- category-bar-chart.js
 - category.json
 - category.py
 - index.html
@@ -32,12 +34,20 @@ The following is a list of files used in the project and a description of each f
 - make_csv.exe
 - make_csv.py
 - make_debit.csv
+- month-bar-chart.js
+- pie-chart.js
 - progressbar.py
 - read_credit_pdf.py
 - read_debit_pdf.py
 - rename_file.py
 - script.js
- 
+- style.css
+- stats.py
+- table.py
+
+category-bar-chart.js
+- used to create a bar chart, visualizing yearly spending per category.
+
 category.json
 - contains a list of keywords and categories related to them. The keywords listed in this file are based on my own transaction history. This file can be customized to compile a detailed csv file tailored to your own personal transaction history. Further details on how to edit this file are outlined in the [category.json](#catgory.json) section.
  
@@ -54,10 +64,16 @@ make_csv.exe
 - creates a csv file called "all-transactions.csv" for all e statements files within the current directory and its subdirectories.
  
 make_csv.py 
-- creates csv file  for all e statements files within the current directory and its subdirectories.
+- creates two files all-transactions.csv and data.json. all-transactions.csv contains transactions parsed from all e statements files within the current directory and its subdirectories. data.json contains spending data based on different categories specified in category.json and spending data based on different months.
  
 make_debit_csv.py
 - creates a csv file for debit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
+
+month-bar-chart.js
+- used to create bar chart visualizing yearly spending per month.
+
+pie-chart.js
+- used to create pie and line chart visualization of yearly spending per category.
  
 progressbar.py
 - a command line interface progress bar used to visualize the progress of the application's execution.
@@ -77,7 +93,16 @@ read_pdf.py
  
 script.js
 - handles the creation of visualizations and web interactions of the application used in index.html.
- 
+
+stats.py
+- used to get yearly spending data based on category and month.
+
+table.py
+- creates table.js which contains a declaration of a table variable representing a html table as a string used in index.html.
+
+# Example
+To download an example a demo of the project donwload the example folder. This contains all the required files to try a live demo of the project in action.
+
 # Implementation
 The following sections outline the implementation of the project. Listing different libraries and modules and how they were used in the project.
 
@@ -91,8 +116,11 @@ The raw contents of the e statements were extracted using **parser** from **[tik
 ## Visualizing Data
 The visualization portion of this project was implemented using echarts.js a free open source JavaScript data visualization library.
 
-### JavaScript Libraries
+### Dependencies
+## JavaScript
 - echarts.js: https://echarts.apache.org/en/index.html
+## CSS Libraries
+- bootstrap 4: https://getbootstrap.com/docs/4.0/getting-started/introduction/
  
 # Getting Started
 To use the application follow the steps outlined in the following sections.
@@ -274,6 +302,4 @@ To run the program download the make_csv.exe and category.json file and run it i
 ![alt text](https://raw.githubusercontent.com/nielsontrung/financial_visualizer/main/execution.PNG "Example Execution")
     
 ## Visualization
-After compiling the csv file from the [Execution](#execution) section, you should now be able to open the index.html file. Here, you will be able to see a visualization showing you total spending from various transaction periods and a comprehensive visualization based on your total spending and spending habits.
-
-## Statistics
+After compiling the csv file from the previous section, you should now be able to open the index.html file. Here, you will be able to see a visualization showing your yearly spending across different categories and transaction periods. You can also view your transaction history on the left of the page.
