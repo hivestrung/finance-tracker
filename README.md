@@ -29,6 +29,8 @@ The following is a list of files used in the project and a description of each f
 - category-bar-chart.js
 - category.json
 - category.py
+- gen.exe
+- gen.py
 - index.html
 - make_credit_csv.py
 - make_csv.exe
@@ -53,6 +55,12 @@ category.json
  
 category.py
 - returns a category based on the transaction description and keywrods in the category.json file.
+
+gen.exe
+- an executable of gen.py for users that do not have a local Python installation.
+
+gen.py
+- generates an example all-transactions.csv with 720 entries.
  
 index.html
 - contains the visualization portion of the application.
@@ -61,10 +69,10 @@ make_credit_csv.py
 - creates a csv file for credit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
  
 make_csv.exe
-- creates a csv file called "all-transactions.csv" for all e statements files within the current directory and its subdirectories.
+- an executable of make_csv.py for users that do not have a local Python installation.
  
 make_csv.py 
-- creates two files all-transactions.csv and data.json. all-transactions.csv contains transactions parsed from all e statements files within the current directory and its subdirectories. data.json contains spending data based on different categories specified in category.json and spending data based on different months.
+- creates four files all-transactions.csv, data.js, data.json, and table.js. all-transactions.csv contains a list of all transactions parsed from all e statements files within the current directory and its subdirectories. data.js contains JavaScript variables used in the data visualization. data.json contains spending data based on different categories specified in category.json and spending data based on different months. table.js contains a variable a string represents of all-transactions.csv as a html table.
  
 make_debit_csv.py
 - creates a csv file for debit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
