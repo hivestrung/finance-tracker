@@ -289,13 +289,13 @@ amount
 After collecting your e statements, follow the steps in the [Execution](#execution) section below on how to run the program.
  
 ## Execution
-To run the program download the make_csv.exe and category.json file and run it in the folder containing your RBC e statements. The following list is a high level a step by step description of the program during execution. 
+To run the program download the make_csv.exe and category.json file and run it in the folder containing your RBC e statements. The following list is a high level step by step description of the program during execution. 
 
 1. The program recursively searches the directory where it is saved and looks for RBC e statements. 
 2. The program converts the filenames of all the e-statements found from the previous step. Renamed as the following (ex: 12345XXXXXX12345-2014-Mar12-2014-Apr12 to 12345XXXXXX12345-2014-03-12-2014-04-12). This step is required for better organization and to extract the transaction period of the e-statement.
-3.  The program creates a csv file "all-transactions.csv" used to store the transactions of the e statements. 
+3.  The program creates four files: all-transactions.csv, data.json, data.js, and table.js. The csv file is used to store the transactions of the e statements. The next file data.json contains data about yearly spending for across different categories and months. The next file file data.js contains JavaScript variables which will be used by category-bar-chart.js, pie-chart.js, and moth-bar-chart.js. The last file created by make_csv.py is table.js which contains a JavaScript variable named "table" this variable is a string, representing the all-transactions.csv as a html table dom element.
 4.  Transactions are then written to the "all-transactions.csv" file. 
-5.  The program finishes execution and closes the "all-transactions.csv" file. 
+5.  The program finishes execution and closes the "all-transactions.csv" file.
 6.  The file should contain a comprehensive list of all your transactions from your e statements formatted according to the example.csv above.
  
 ### Example of successful execution:
