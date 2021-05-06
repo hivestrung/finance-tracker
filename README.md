@@ -4,7 +4,7 @@ A financial tracker / visualization tool used to gain insights about spending ha
 ## Disclaimer
 Due to the structure and format of RBCs debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. Certain deposits and withdrawls are not recorded with their appropriate value and create inconsistencies in total debit account balances. This application should instead be used to gain insights about your personal spending habits and trendsbased on different categories and periods.
  
-## Project Outline
+### Project Outline
  
 - [Project Manifest](#project-manifest)
 - [Example](#example)
@@ -23,65 +23,68 @@ Due to the structure and format of RBCs debit e statements the amounts recorded 
     - [Visualization](#visualization)
     - [Statistics](#statistics)
  
-## Project Manifest
+### Project Manifest
+## Application
 The following is a list of files used in the project and a description of each file.
- 
-- category-bar-chart.js
-- category.json
-- category.py
-- gen.exe
-- gen.py
-- index.html
-- make_credit_csv.py
-- make_csv.exe
-- make_csv.py
-- make_debit.csv
-- month-bar-chart.js
-- pie-chart.js
-- progressbar.py
-- read_credit_pdf.py
-- read_debit_pdf.py
-- rename_file.py
-- script.js
-- style.css
-- stats.py
-- table.py
+
+- finance-tracker
+    - category-bar-chart.js
+    - index.html
+    - category.json
+    - gen.exe
+    - make_csv.exe
+    - month-bar-chart.js
+    - pie-chart.js
+    - style.css
 
 category-bar-chart.js
 - used to create a bar chart, visualizing yearly spending per category.
 
-category.json
-- contains a list of keywords and categories related to them. The keywords listed in this file are based on my own transaction history. This file can be customized to compile a detailed csv file tailored to your own personal transaction history. Further details on how to edit this file are outlined in the [category.json](#catgory.json) section.
- 
-category.py
-- returns a category based on the transaction description and keywrods in the category.json file.
-
 gen.exe
 - an executable of gen.py for users that do not have a local Python installation.
 
-gen.py
-- generates an example all-transactions.csv with 720 entries.
- 
+category.json
+- contains a list of keywords and categories related to them. The keywords listed in this file are based on my own transaction history. This file can be customized to compile a detailed csv file tailored to your own personal transaction history. Further details on how to edit this file are outlined in the [category.json](#catgory.json) section.
+
 index.html
 - contains the visualization portion of the application.
- 
-make_credit_csv.py
-- creates a csv file for credit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
- 
+
 make_csv.exe
 - an executable of make_csv.py for users that do not have a local Python installation.
- 
-make_csv.py 
-- creates four files all-transactions.csv, data.js, data.json, and table.js. all-transactions.csv contains a list of all transactions parsed from all e statements files within the current directory and its subdirectories. data.js contains JavaScript variables used in the data visualization. data.json contains spending data based on different categories specified in category.json and spending data based on different months. table.js contains a variable a string represents of all-transactions.csv as a html table.
- 
-make_debit_csv.py
-- creates a csv file for debit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
 
 month-bar-chart.js
 - used to create bar chart visualizing yearly spending per month.
 
 pie-chart.js
 - used to create pie and line chart visualization of yearly spending per category.
+
+## Python Scripts
+The following is a list of Python scripts used in the project and a description of each file.
+- category.py
+- gen.py
+- make_credit_csv.py
+- make_csv.py
+- progressbar.py
+- read_credit_pdf.py
+- read_debit_pdf.py
+- rename_file.py
+- stats.py
+- table.py
+
+category.py
+- returns a category based on the transaction description and keywrods in the category.json file.
+
+gen.py
+- generates an example all-transactions.csv with 720 entries.
+ 
+make_credit_csv.py
+- creates a csv file for credit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
+ 
+make_csv.py 
+- creates four files all-transactions.csv, data.js, data.json, and table.js. all-transactions.csv contains a list of all transactions parsed from all e statements files within the current directory and its subdirectories. data.js contains JavaScript variables used in the data visualization. data.json contains spending data based on different categories specified in category.json and spending data based on different months. table.js contains a variable a string represents of all-transactions.csv as a html table.
+ 
+make_debit_csv.py
+- creates a csv file for debit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
  
 progressbar.py
 - a command line interface progress bar used to visualize the progress of the application's execution.
@@ -99,9 +102,6 @@ start and end month of a transaction.
 read_pdf.py
 - contains helper functions used by read_credit_pdf.py and read_debit_pdf.py.
  
-script.js
-- handles the creation of visualizations and web interactions of the application used in index.html.
-
 stats.py
 - used to get yearly spending data based on category and month.
 
@@ -109,7 +109,7 @@ table.py
 - creates table.js which contains a declaration of a table variable representing a html table as a string used in index.html.
 
 # Example
-To download an example a demo of the project donwload the example folder. This contains all the required files to try a live demo of the project in action.
+To try a live demo of the application click the following link . To download an example a demo of the project donwload the example folder. This contains all the required files to try a live demo of the project in action.
 
 # Implementation
 The following sections outline the implementation of the project. Listing different libraries and modules and how they were used in the project.
@@ -297,7 +297,7 @@ amount
 After collecting your e statements, follow the steps in the [Execution](#execution) section below on how to run the program.
  
 ## Execution
-To run the program download the make_csv.exe and category.json file and run it in the folder containing your RBC e statements. The following list is a high level step by step description of the program during execution. 
+To run the finance-tracker project folder. After donwloading the project folder download or move all your e statements 
 
 1. The program recursively searches the directory where it is saved and looks for RBC e statements. 
 2. The program converts the filenames of all the e-statements found from the previous step. Renamed as the following (ex: 12345XXXXXX12345-2014-Mar12-2014-Apr12 to 12345XXXXXX12345-2014-03-12-2014-04-12). This step is required for better organization and to extract the transaction period of the e-statement.
