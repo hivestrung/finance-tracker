@@ -61,7 +61,6 @@ pie-chart.js
 The following is a list of Python scripts used in the project and a brief description of each file.
 - category.py
 - gen.py
-- make_credit_csv.py
 - make_csv.py
 - progressbar.py
 - read_credit_pdf.py
@@ -76,14 +75,8 @@ category.py
 gen.py
 - generates an example all-transactions.csv with 720 entries.
  
-make_credit_csv.py
-- creates a csv file for credit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
- 
 make_csv.py 
 - creates four files all-transactions.csv, data.js, data.json, and table.js. all-transactions.csv contains a list of all transactions parsed from all e statements files within the current directory and its subdirectories. data.js contains JavaScript variables used in the data visualization. data.json contains spending data based on different categories specified in category.json and spending data based on different months. table.js contains a variable a string represents of all-transactions.csv as a html table.
- 
-make_debit_csv.py
-- creates a csv file for debit transactions only in the directory it is saved in, the name of the csv file will have the same format as a e-statement that is downloaded from your online account. The following is an example where the account account number is 12345XXXXXX6789, the first transaciton period is 2014-01-12 and last transaction period 2021-04-12 (ex: 12345XXXXXX6789-2014-01-12-2021-04-12.csv).
  
 progressbar.py
 - a command line interface progress bar used to visualize the progress of the application's execution.
