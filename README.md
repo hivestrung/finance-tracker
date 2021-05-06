@@ -3,11 +3,12 @@ A financial tracker / visualization tool used to gain insights about spending ha
  
 ## Disclaimer
 Due to the structure and format of RBCs debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. Certain deposits and withdrawls are not recorded with their appropriate value and create inconsistencies in total debit account balances. This application should instead be used to gain insights about your personal spending habits and trendsbased on different categories and periods.
- 
+
+# Live Demo
+To try a live demo of the application click the following link: https://nielsontrung.github.io/finance-tracker/. To download a local copy of the demo download the git repo and open the index.html file in the finance-tracker folder. Instructions in the [Getting Started](#getting-started) section also outline how to use the project.
+
 ### Project Outline
- 
 - [Project Manifest](#project-manifest)
-- [Example](#example)
 - [Implementation](#implementation)
     - [Extracting Data](#extracting-data)
     - [Visualizing Data](#visualizing-data)
@@ -99,9 +100,6 @@ stats.py
 
 table.py
 - creates table.js which contains a declaration of a table variable representing a html table as a string used in index.html.
-
-# Example
-To try a live demo of the application click the following link . To download a local copy of the demo download the git repo and open the index.html file in the finance-tracker folder. Instructions in the [Getting Started](#getting-started) section also outline how to use the project.
 
 # Implementation
 The following sections outline the implementation of the project. Listing different libraries and modules and describing how they were used in the application.
