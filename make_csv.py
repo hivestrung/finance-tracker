@@ -11,9 +11,9 @@ from table import make_table
 
 def print_options():
   print("Choose one of the following options below:")
-  print("(0) exit")
-  print("(1) recursively process all e statements")
-  print("(2) process all-transactions.csv")
+  print("\t(0) exit")
+  print("\t(1) recursively process all e statements")
+  print("\t(2) process all-transactions.csv")
 
 def get_input():
   clear = lambda: os.system('cls')  
