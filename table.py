@@ -45,5 +45,3 @@ def make_table():
   f = open('table.js','w')
   f.write("var table = \"" + table.replace('\n',' ') + "\"")
   f.close()
-
-make_table()
