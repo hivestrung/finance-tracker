@@ -333,9 +333,7 @@ Make sure you have followed the instructions in the previous sections before exe
 7. The program converts the filenames of all the e-statements found from the previous step. Renamed as the following (ex: 12345XXXXXX12345-2014-Mar12-2014-Apr12 to 12345XXXXXX12345-2014-03-12-2014-04-12). This step is required for better organization and to extract the transaction period of the e-statement.
 8. The program parses every e statement in the project folder and writes every transaction to the "all-transactions.csv" file.
 9. The program creates the following files data.json, data.js, and table.js. data.json contains data about yearly spending across different categories and months. data.js contains data from data.json stored as JavaScript variables which will be used by category-bar-chart.js, pie-chart.js, and moth-bar-chart.js. table.js contains a JavaScript variable named "table" this variable is a string representing all-transactions.csv as a html table dom element.
-10. The program finishes execution and closes the "all-transactions.csv" file.
-11. The file should contain a comprehensive list of all your transactions from your e statements formatted according to the example.csv above.
-
+10. The program finishes execution and closes the following files all-transactions.csv, data.js, data.json, and table.js.
 #### Program Finishing Execution
     Progress: |██████████████████████████████████████████████████| 100.0% Complete
 
