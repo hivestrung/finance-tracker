@@ -22,6 +22,9 @@ def get_input():
     if choice == '1' or choice == '2':
       clear()
       return choice
+    elif choice == '0':
+      clear()
+      exit(0)
     else:
       clear()
       print_options()
@@ -45,7 +48,22 @@ def prepare_data_json(start_year,end_year):
   data['month'] = init_data_json(months,start_year,end_year)
   return data
 
-def save_data_json():
+def add_transaction_id():
+  with open('all-transactions.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    new_csv = 'id, account, date, description, category, amount \n'
+    line_count = 0
+    for row in csv_reader:
+      if line_count == 0:
+        line_count += 1
+      else:
+        new_csv += str(line_count)+','+row[1]+','+row[2]+','+row[3]+','+row[4]+','+row[5]+'\n'
+        line_count += 1
+    f = open('all-transactions.csv','w')
+    f.write(new_csv)
+    f.close()
+
+def save_data_json(data):
   with open('data.json', 'w') as j:
     json.dump(data, j, ensure_ascii=False, indent=2)
 
@@ -63,82 +81,95 @@ def make_data_js(start_year,end_year):
   f.close()
 
 # main
-print_options()
-choice = get_input()
+def main():
+  print_options()
+  choice = get_input()
 
-# global variables
-start_year = 0
-end_year = 0
+  # global variables
+  start_year = 0
+  end_year = 0
 
-# recursively process all e statements
-if choice == '1':
-  statement_pattern = '\d+X+\d+-20\d{2}-\d{2}-\d{2}-20\d{2}-\d{2}-\d{2}.pdf$'
-  statement_paths = Path('.').rglob('*.pdf')
-  statements = []
+  # recursively process all e statements
+  if choice == '1':
+    statement_pattern = '\d+X+\d+-20\d{2}-\d{2}-\d{2}-20\d{2}-\d{2}-\d{2}.pdf$'
+    statement_paths = Path('.').rglob('*.pdf')
+    statements = []
 
-  # rename statements
-  for path in statement_paths:
-    rename_file(path)
-    if search(statement_pattern,str(path.name)):
-      statements.append(path)
+    # rename statements
+    for path in statement_paths:
+      if search(statement_pattern,str(path.name)):
+        rename_file(path)
+        statements.append(path)
+    
+    if len(statements) < 1:
+      print('could not find any e statements...')
+      os.system("pause")
+      exit(0)
 
-  start_year = int(statements[0].name.split('-')[1])
-  end_year = int(statements[len(statements)-1].name.split('-')[1])
-  years = []
-  for i in range(start_year,end_year):
-    years.append(i)
-
-  data = prepare_data_json(start_year,end_year)
-
-  # open statements and write to csv file
-  csv_file = 'all-transactions.csv'
-  csv_header = 'id, account , date, description, category, amount\n'
-  f = open(csv_file,'w')
-  f.write(csv_header)
-  for statement in progressBar(statements, prefix = 'Progress:', suffix = 'Complete', length = 50):
-    if len(statement.name) == 38:
-      get_debit_data(statement,f,data)
-    if len(statement.name) == 42:
-      get_credit_data(statement,f,data)
-  f.close()
-
-  # round amounts to two decimal places
-  for i in data['category']:
-    for j in data['category'][i]:
-      data['category'][i][j] = round(data['category'][i][j],2)
-
-  for i in data['month']:
-    for j in data['month'][i]:
-      data['month'][i][j] = round(data['month'][i][j],2)
-  
-# process all-transactions.csv
-elif choice == '2':
-  
-  with open("all-transactions.csv",'r') as csv_file:
-    csv_reader = csv.reader(csv_file,delimiter=',')
-    rows = list(csv_reader)
-    start_year = int(rows[1][2].split('-')[0])
-    end_year = int(rows[len(rows)-1][2].split('-')[0])
+    start_year = int(statements[0].name.split('-')[1])
+    end_year = int(statements[len(statements)-1].name.split('-')[1])
+    years = []
+    for i in range(start_year,end_year):
+      years.append(i)
 
     data = prepare_data_json(start_year,end_year)
-    line_count = 0
-    year = 0
-    month = ''
-    amount = 0    
-    for row in progressBar(rows, prefix = 'Progress:', suffix = 'Complete', length = 50):
-      if line_count == 0:
-        line_count += 1
-      else:
-        year = row[2].split('-')[0]
-        month = get_month_name(row[2].split('-')[1])
-        amount = float(row[5])
-        data['category'][row[4]][int(year)] = amount
-        data['month'][month][int(year)] = amount
-        line_count += 1
 
-# save data to json file
-save_data_json()
-# prepare data.js variables for visualization
-make_data_js(start_year,end_year)
-# convert all-transactions.csv to html table
-make_table()
+    # open statements and write to csv file
+    csv_file = 'all-transactions.csv'
+    csv_header = 'id, account , date, description, category, amount\n'
+    f = open(csv_file,'w')
+    f.write(csv_header)
+    for statement in progressBar(statements, prefix = 'Progress:', suffix = 'Complete', length = 50):
+      if len(statement.name) == 38:
+        get_debit_data(statement,f,data)
+      if len(statement.name) == 42:
+        get_credit_data(statement,f,data)
+    f.close()
+
+    # give transactions an id
+    add_transaction_id()
+
+    # round amounts to two decimal places
+    for i in data['category']:
+      for j in data['category'][i]:
+        data['category'][i][j] = round(data['category'][i][j],2)
+
+    for i in data['month']:
+      for j in data['month'][i]:
+        data['month'][i][j] = round(data['month'][i][j],2)
+  # process all-transactions.csv
+  elif choice == '2':
+    if not os.path.isfile('all-transactions.csv'):
+      print('did not find all-transctions.csv')
+      os.system("pause")
+      exit(0)
+
+    with open("all-transactions.csv",'r') as csv_file:
+      csv_reader = csv.reader(csv_file,delimiter=',')
+      rows = list(csv_reader)
+      start_year = int(rows[1][2].split('-')[0])
+      end_year = int(rows[len(rows)-1][2].split('-')[0])
+      data = prepare_data_json(start_year,end_year)
+      line_count = 0
+      year = 0
+      month = ''
+      amount = 0    
+      for row in progressBar(rows, prefix = 'Progress:', suffix = 'Complete', length = 50):
+        if line_count == 0:
+          line_count += 1
+        else:
+          year = row[2].split('-')[0]
+          month = get_month_name(row[2].split('-')[1])
+          amount = float(row[5])
+          data['category'][row[4]][int(year)] = amount
+          data['month'][month][int(year)] = amount
+          line_count += 1
+  # save data to json file
+  save_data_json(data)
+  # prepare data.js variables for visualization
+  make_data_js(start_year,end_year)
+  # convert all-transactions.csv to html table
+  make_table()
+
+if __name__ == '__main__':
+  main()
