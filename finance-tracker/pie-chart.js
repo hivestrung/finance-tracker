@@ -110,7 +110,6 @@ setTimeout(function(){
     pieChart.setOption(categoryOption);
 });
 
-
 if (categoryOption && typeof categoryOption === 'object') {
     pieChart.setOption(categoryOption);
 }
