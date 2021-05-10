@@ -128,7 +128,6 @@ def main():
 
     # give transactions an id
     add_transaction_id()
-
     # round amounts to two decimal places
     for i in data['category']:
       for j in data['category'][i]:
@@ -140,7 +139,7 @@ def main():
   # process all-transactions.csv
   elif choice == '2':
     if not os.path.isfile('all-transactions.csv'):
-      print('did not find all-transctions.csv')
+      print('did not find all-transactions.csv')
       os.system("pause")
       exit(0)
 
