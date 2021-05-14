@@ -149,44 +149,64 @@ The following is a list of the categories in category.json and examples of keywo
  
 automotive
 - transactions related to automotive purchases (ex: acura, honda,...)
+
 clothing
 - transactions related to clothing purchases (ex: h&m,...)
+
 deposit
 - transactions related to deposits
+
 education
 - transactions related to educational purchases (ex: university,...)
+
 electronics
 - transactions related to electronics purchases (ex: best buy,...)
+
 entertainment
 - transactions related to entertainment purchases (ex: minecraft,...)
+
 e transfers
 - transactions related to e-transfers
+
 fee
 - transactions related to fee payments
+
 gas
 - transactions related to gas purchases (ex: 7 eleven,...)
+
 general merchandise
 - transactions related to general merchandise purchases (ex: amazon,...)
+
 groceries
 - transactions related to grocery purchases (ex: real cdn supers,...)
+
 healthcare
 - transactions related to healthcare transactions (ex: dental, pharmacy,...)
+
 home improvement
 - transactions related to home improvement transactions (ex: rona, lowes,...)
+
 loans
 - transactions related to loan payments
+
 mobile
 - transactions related to mobile payments (ex: fido, koodo,...)
+
 other
 - other transactions
+
 personal care
 - transactions related to personal care (ex: salon, hair,...)
+
 restaurants
 - transactions related to restaurant purchases (ex: mcdonalds,...)
+
 travel
 - transactions related to travel expenses (ex: airport,...)
+
 utilities
 - transactions related to utility expenses (ex: enmax,...)
+
 withdrawal
 - transactions related to withdrawals (ex: withdrawal,...)
  
