@@ -1,11 +1,14 @@
 # Finance Tracker / Visualizer
-A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transaction periods. This project was inspired due to deficiencies in RBC's MyFinanceTracker and my interest in personal finance developed during quarantine. I collected my own personal e statements from my RBC account and used the parser function from tika, a Python parsing module. Which was used to extract the contents from my credit and debit e statements. Further string parsing techniques were used to extract transaction details and stored in a csv file. After compiling the e statements into a csv file, I was able to create meaningful data visualizations. Using echarts.js a data visualization library. The application should be usable if you are a RBC client. To use this application follow the instructions outlined in the [Getting Started](#getting-started) section.
+A financial tracker / visualization tool used to gain insights about spending habits, trends, and patterns over varying transaction periods. This project was inspired due to inconsistencies in RBC's MyFinanceTracker and my interest in personal finance developed during quarantine. The application visualizes yearly across categories and month and also shows a table of transactions. The application should be usable if you are a RBC client. To use this application follow the instructions outlined in the [Getting Started](#getting-started) section.
  
 ## Disclaimer
 Due to the structure and format of RBCs debit e statements the amounts recorded in the compiled csv file for debit transactions are not as accurate as initially intended. Certain deposits and withdrawals are not recorded with their appropriate value and create inconsistencies in total debit account balances. This application should instead be used to gain insights about your personal spending habits and trends based on different categories and periods.
  
 # Live Demo
-To try a live demo of the application click the following link: https://nielsontrung.github.io/finance-tracker/. To download a local copy of the demo download the git repo and open the index.html file in the finance-tracker folder. Instructions in the [Getting Started](#getting-started) section also outlines how to use the project.
+To try a live demo of the application by clicking the link below: 
+- https://nielsontrung.github.io/finance-tracker/. 
+
+To download the application on your own device follow the instructions in the [Getting Started](#getting-started) section.
  
 ### Project Outline
 - [Project Manifest](#project-manifest)
@@ -83,11 +86,11 @@ progressbar.py
 - a command line interface progress bar used to visualize the progress of the application's execution.
  
 read_credit_pdf.py
-- used to parse rbc credit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
+- used to parse rbc credit e-statements. Used to extract the transaction date, description, category, and the amount.
  
 read_debit_pdf.py
-- used to parse rbc debit e-statements. Used to extract the transaction date, posting date, transaction id, business details, and the amount of the transaction
- 
+- used to parse rbc debit e-statements. Used to extract the transaction date, description, category, and the amount.
+
 rename.py
 - used to rename e statements files that were downloaded from RBC, in order to use string parsing techniques to extract the year and
 start and end month of a transaction.
