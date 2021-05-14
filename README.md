@@ -18,7 +18,7 @@ To try a live demo of the application by clicking the link below:
     - [Category json](#category-json)
         - [Categories](#categories)
         - [Customization](#customization)
-    - [CSV](#files)
+    - [CSV](#csv)
     - [Execution](#execution)
     - [Visualization](#visualization)
  
